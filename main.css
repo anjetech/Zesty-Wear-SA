@@ -1,8 +1,30 @@
 .navbar  {
-    background-color: rgb(217, 254, 217) !important;
-    height: 29 !important; 
+    background-color: rgb(165, 239, 254) !important;
+    height: 70px !important;  
+    font-size: 20px !important;
+    padding: 20px !important;
+    letter-spacing: 2px !important;
+}
+
+.header-name {
+    font-size: 28px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: left;
+    font-style: italic;
 }
 
 body {
     background-color: rgb(255, 255, 255) !important;
+}
+
+.carousel img {
+    height: 100vh;
+}
+
+img {
+   width: 100%;
+   height: 100vh;
+   object-fit: cover; 
 }
