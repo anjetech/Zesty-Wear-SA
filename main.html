@@ -5,15 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="main.css">
     <title>Zesty Wear SA</title>
 
 </head>
 <body>
-    
+    <!-- Navbar begins-->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-          <a class="navbar-brand" ><b>Zesty Wear SA</b></a>
+          <!--<a class="navbar-brand" ><b>Zesty Wear SA</b></a> -->
+          <h1 class = "header-name"> Zesty Wear SA</h1>
 
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -50,15 +52,43 @@
               </li>
 
             </ul>
+
             <form class="d-flex" role="search">
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+            </form> 
+            
           </div>
         </div>
+        <hr>
       </nav>
+<!-- Navbar ends-->
 
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+
+<!--Picture slider begin-->
+<div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+      <div class="carousel-item active">
+          <img src="men-acc.jpg" class="d-block w-100" alt="First Image">
+      </div>
+      <div class="carousel-item">
+          <img src="men-jeans.jpg" class="d-block w-100" alt="Second Image">
+      </div>
+      <div class="carousel-item">
+          <img src="shoes.jpg" class="d-block w-100" alt="Third Image">
+      </div>
+  </div>
+
+  <!-- Previous and Next Arrows -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+  </button>
+</div>
+<!-- Picture slider ends-->
+      
       
 </body>
 </html>
