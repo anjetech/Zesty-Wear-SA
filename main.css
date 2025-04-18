@@ -1,9 +1,17 @@
 .navbar  {
-    background-color: rgb(248, 155, 155) !important;
+    background-color: rgb(248, 228, 164) !important;
     height: 70px !important;  
     font-size: 20px !important;
     padding: 20px !important;
     letter-spacing: 2px !important;
+}
+
+.nav-item:hover {
+    text-decoration: underline !important;
+}
+
+.nav-items {
+    color: #000000 !important;
 }
 
 .header-name {
@@ -58,6 +66,7 @@ img {
     font-size: 16px;
     cursor: pointer;
     transition: 0.3s;
+    margin-bottom: 30px;
 }
 
 .promo-button:hover {
@@ -99,4 +108,48 @@ img {
     padding: 10px;
     font-size: 16px;
     font-weight: bold;
+}
+
+.woman-heading {
+    text-align:center;
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: grey;
+}
+
+.site-footer {
+    background-color: light gray;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+}
+
+.footer-divider {
+    width: 90%;
+    height: 2px;
+    background-color: grey;
+    margin: 20px auto;
+}
+
+.footer-text {
+    margin-top: 10;
+}
+
+.auth-links {
+    display: flex;
+    gap: 15px;
+    margin-left: 15px;
+}
+
+.login-link, .signup-link {
+    text-decoration: none;
+    font-weight: bold;
+    color: #000000;
+    font-size: 16px;
+}
+
+.login-link:hover, .signup-link:hover {
+    text-decoration: underline;
 }
