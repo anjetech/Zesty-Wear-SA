@@ -1,0 +1,102 @@
+.navbar  {
+    background-color: rgb(226, 248, 164) !important;
+    height: 70px !important;  
+    font-size: 20px !important;
+    padding: 20px !important;
+    letter-spacing: 2px !important;
+    margin-bottom: 30px;
+}
+
+.nav-item:hover {
+    text-decoration: underline !important;
+}
+
+.nav-items {
+    color: #000000 !important;
+}
+
+.header-name {
+    font-size: 28px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: left;
+    font-style: italic;
+}
+
+body {
+    background-color: rgb(255, 255, 255) !important;
+}
+
+.site-footer {
+    background-color: light gray;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+}
+
+.footer-divider {
+    width: 90%;
+    height: 2px;
+    background-color: grey;
+    margin: 20px auto;
+}
+
+.footer-text {
+    margin-top: 10;
+}
+
+.auth-links {
+    display: flex;
+    gap: 15px;
+    margin-left: 15px;
+}
+
+.login-link, .signup-link {
+    text-decoration: none;
+    font-weight: bold;
+    color: #000000;
+    font-size: 16px;
+}
+
+.login-link:hover, .signup-link:hover {
+    text-decoration: underline;
+}
+
+.mens-heading {
+    text-align:center;
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: grey;
+}
+
+.product-grid {
+    display: flex;
+    grid-template-columns: repeat(4,1fr);
+    justify-content: center;
+    gap: 20px;
+}
+
+.product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 250px;
+}
+
+.product img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.product-details {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
