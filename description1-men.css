@@ -1,0 +1,129 @@
+.navbar  {
+    background-color: rgb(226, 248, 164) !important;
+    height: 70px !important;  
+    font-size: 20px !important;
+    padding: 20px !important;
+    letter-spacing: 2px !important;
+}
+
+.nav-item:hover {
+    text-decoration: underline !important;
+}
+
+.nav-items {
+    color: #000000 !important;
+}
+
+.header-name {
+    font-size: 28px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: left;
+    font-style: italic;
+}
+
+body {
+    background-color: rgb(255, 255, 255) !important;
+}
+
+.product-page {
+    display: flex;
+    gap: 100%;
+    background: none;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    align-items: center;
+}
+
+.product-image {
+    flex-shrink: 0;
+    margin-left: -40px; 
+}
+
+.product-image img {
+    max-width: 550px;
+    display: block;
+    object-fit: contain;
+    width: 100%;
+    height: auto;
+    margin-left: 20px;
+}
+
+.product-info {
+    max-width: 400px;
+    text-align: left;
+    font-size: 18px;
+    text-align: center;
+}
+
+.price {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.select {
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.add-to-cart {
+    padding: 12px 20px;
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.add-to-cart:hover {
+    background-color: grey;
+}
+
+.size-options {
+    display: flex;
+    gap: 15px; 
+}
+
+.size-options input {
+    margin-right: 5px; 
+}
+
+.site-footer {
+    background-color: light gray;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+}
+
+.footer-divider {
+    width: 90%;
+    height: 2px;
+    background-color: grey;
+    margin: 20px auto;
+}
+
+.footer-text {
+    margin-top: 10;
+}
+
+.auth-links {
+    display: flex;
+    gap: 15px;
+    margin-left: 15px;
+}
+
+.login-link, .signup-link {
+    text-decoration: none;
+    font-weight: bold;
+    color: #000000;
+    font-size: 16px;
+}
+
+.login-link:hover, .signup-link:hover {
+    text-decoration: underline;
+}
