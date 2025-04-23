@@ -1,0 +1,147 @@
+.navbar  {
+    background-color: rgb(226, 248, 164) !important;
+    height: 70px !important;  
+    font-size: 20px !important;
+    padding: 20px !important;
+    letter-spacing: 2px !important;
+}
+
+.nav-item:hover {
+    text-decoration: underline !important;
+}
+
+.nav-items {
+    color: #000000 !important;
+}
+
+.header-name {
+    font-size: 28px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: left;
+    font-style: italic;
+}
+
+body {
+    background-color: rgb(255, 255, 255) !important;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+.left-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-fit: cover;
+    
+}
+
+.left-image img {
+    width: 100%; 
+    height: 85%; 
+    max-width: 650px; 
+    object-fit: cover;
+    margin-left: -30px;
+}
+
+.right-form {
+    flex: 0.8; 
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    padding: 40px; 
+}
+
+.product-info {
+    max-width: 400px;
+    font-size: 18px;
+    text-align: left; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    height: 100%; 
+}
+
+.price {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.select {
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.add-to-cart {
+    padding: 12px 20px;
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.add-to-cart:hover {
+    background-color: grey;
+}
+
+.size-options {
+    display: flex;
+    gap: 15px; 
+}
+
+.size-options input {
+    margin-right: 5px; 
+}
+
+.site-footer {
+    background-color: light gray;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+}
+
+.footer-divider {
+    width: 90%;
+    height: 2px;
+    background-color: grey;
+    margin: 20px auto;
+}
+
+.footer-text {
+    margin-top: 10;
+}
+
+.auth-links {
+    display: flex;
+    gap: 15px;
+    margin-left: 15px;
+}
+
+.login-link, .signup-link {
+    text-decoration: none;
+    font-weight: bold;
+    color: #000000;
+    font-size: 16px;
+}
+
+.login-link:hover, .signup-link:hover {
+    text-decoration: underline;
+}
+
+.product-info h1,
+.product-info .price,
+.product-info .description,
+.size-options,
+.add-to-cart {
+    margin-bottom: 20px;
+}
