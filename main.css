@@ -153,3 +153,12 @@ img {
 .login-link:hover, .signup-link:hover {
     text-decoration: underline;
 }
+
+.image-link {
+    transition: transform 0.3s ease-out;
+}
+
+.image-link:hover img {
+    transform: scale(1.1);
+    cursor: pointer;
+}
