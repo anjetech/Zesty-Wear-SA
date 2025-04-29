@@ -107,18 +107,3 @@ input {
 .right-form {
     flex-grow: 1;
 }
-
-.back-link {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    font-size: 16px;
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-}
-
-.back-link:hover {
-    color: black;
-    text-decoration: underline;
-}
