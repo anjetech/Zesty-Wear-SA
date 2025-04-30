@@ -21,6 +21,15 @@
     letter-spacing: 2px;
     text-align: left;
     font-style: italic;
+    color: black;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover .header-name {
+    color:#333;
 }
 
 body {
