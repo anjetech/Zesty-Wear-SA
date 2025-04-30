@@ -83,10 +83,7 @@ body {
     color: #333;
 }
 
-.select {
-    padding: 10px;
-    border-radius: 5px;
-}
+
 
 .add-to-cart {
     padding: 12px 20px;
@@ -102,14 +99,6 @@ body {
     background-color: grey;
 }
 
-.size-options {
-    display: flex;
-    gap: 15px; 
-}
-
-.size-options input {
-    margin-right: 5px; 
-}
 
 .site-footer {
     background-color: light gray;
