@@ -1,3 +1,28 @@
+.navbar  {
+    background-color: rgb(226, 248, 164) !important;
+    height: 70px !important;  
+    font-size: 20px !important;
+    padding: 20px !important;
+    letter-spacing: 2px !important;
+}
+
+.nav-item:hover {
+    text-decoration: underline !important;
+}
+
+.nav-items {
+    color: #000000 !important;
+}
+
+.header-name {
+    font-size: 28px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: left;
+    font-style: italic;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -76,6 +101,22 @@ input {
     margin-bottom: 15px;
 }
 
+.auth-links {
+    display: flex;
+    gap: 15px;
+    margin-left: 15px;
+}
+
+.login-link, .signup-link {
+    text-decoration: none;
+    font-weight: bold;
+    color: #000000;
+    font-size: 16px;
+}
+
+.login-link:hover, .signup-link:hover {
+    text-decoration: underline;
+}
 
 .site-footer {
     background-color: light gray;
