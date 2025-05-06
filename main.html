@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="main.css">
+    <script src="searchbar.js"></script>
     <title>Zesty Wear SA</title>
 
 </head>
@@ -51,11 +52,11 @@
 
             </ul>
 
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <form id="searchForm" class="d-flex" role="search">
+              <input id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success" type="submit">Search</button>
-            </form> 
-
+          </form>
+          
             <!-- Sign in/login links-->
              <div class = "auth-links">
               <a href = "login.html" class = "login-link">Log in</a>
@@ -209,6 +210,7 @@
     </footer>
     <!--Footer ends-->
 
-
+    <!--Linking my javascript file-->
+    <script src="searchbar.js"></script>
 </body>
 </html>
