@@ -79,11 +79,11 @@ a:hover .header-name {
 
 input {
     width: 100%;
-    padding: 10px; /* Reduce padding to make them less tall */
-    font-size: 18px; /* Keep text readable */
+    padding: 8px; /* Reduce padding to make them less tall */
+    font-size: 16px; /* Keep text readable */
     border: 1px solid grey;
-    border-radius: 30px; /* Keeps pill shape */
-    margin-bottom: 20px;
+    border-radius: 20px; /* Keeps pill shape */
+    margin-bottom: 15px;
 }
 
 .signup-btn {
