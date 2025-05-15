@@ -63,22 +63,23 @@
   </nav>
 <!-- Navbar ends-->
 
-        <!-- Main Content with Background -->
+        
     <div class="container">
         <div class="signup-form">
             <h2><b>Register to Zesty Wear SA</b></h2>
-            <form action="signup.php" method="POST">
+            <form action="user_registration.php" method="POST">
                 
-                <label for="name">Full Name</label>
-                <input type="email" id="name" name="name" required>
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
 
                 <label for="email">Email address</label>
                 <input type="email" id="email" name="email" required>
+
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" required>
 
-                <label for="password">Confirm Password</label>
-                <input type="password" id="password" name="password" required>
+                <label for="confirm_password">Confirm Password</label>
+                <input type="password" id="confirm_password" name="confirm_password" required>
                 
                 <button type="submit" class="signup-btn">Register</button>
             </form>
