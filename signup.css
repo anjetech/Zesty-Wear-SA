@@ -25,12 +25,12 @@
     color: rgb(255, 255, 255);
 }
 
-a {
-    text-decoration: none;
-}
-
 a:hover .header-name {
     color:#d2c0c0;
+}
+
+a {
+    text-decoration: none;
 }
 
 * {
@@ -38,8 +38,6 @@ a:hover .header-name {
     padding: 0;
     box-sizing: border-box;
 }
-
-
 
 .container {
     background: url('shoes.jpg') no-repeat center center;

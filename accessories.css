@@ -1,18 +1,18 @@
-.navbar  {
-    background-color:  rgba(154, 154, 154, 0.525)!important;
+.navbar {
+    background-color: black !important;
     height: 70px !important;  
     font-size: 20px !important;
     padding: 20px !important;
     letter-spacing: 2px !important;
-    margin-bottom: 30px;
 }
 
 .nav-item:hover {
     text-decoration: underline !important;
+    color: white;
 }
 
-.nav-items {
-    color: #000000 !important;
+.nav-items, .nav-link {
+    color: white !important;
 }
 
 .header-name {
@@ -22,7 +22,7 @@
     letter-spacing: 2px;
     text-align: left;
     font-style: italic;
-    color: black;
+    color: rgb(255, 255, 255);
 }
 
 a {
@@ -30,7 +30,7 @@ a {
 }
 
 a:hover .header-name {
-    color:#333;
+    color:#d2c0c0;
 }
 
 body {
@@ -65,7 +65,7 @@ body {
 .login-link, .signup-link {
     text-decoration: none;
     font-weight: bold;
-    color: #000000;
+    color: #ffffff;
     font-size: 16px;
 }
 
