@@ -1,9 +1,10 @@
 .navbar  {
-    background-color: rgba(154, 154, 154, 0.525) !important;
+    background-color:  rgba(154, 154, 154, 0.525) !important;
     height: 70px !important;  
     font-size: 20px !important;
     padding: 20px !important;
     letter-spacing: 2px !important;
+    
 }
 
 .nav-item:hover {
@@ -31,58 +32,45 @@ a {
 a:hover .header-name {
     color:#333;
 }
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+
+
 .container {
+    background: url('login2.jpg') no-repeat center center;
+    background-size: cover; /* Ensures the image fully stretches */
+    background-position: center; /* Centers the image perfectly */
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
     display: flex;
-    width: 100%;
-    height: 100vh;
-}
-
-.left-image {
-    flex: 1;
-    display: flex;
-    justify-content: center;
     align-items: center;
-    object-fit: cover;
-    overflow: auto;
-}
-
-.left-image img {
-    width: 100%; 
-    height: auto;
-    max-width: 600px; 
-    object-fit: cover;
-}
-
-.right-form {
-    flex: 0.8; 
-    display: flex;
     justify-content: center;
-    align-items: center;
-    padding: 40px; 
+    position: relative;
+    z-index: 1;
+    flex-direction: column;
 }
 
 .signup-form {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
     width: 80%;
     max-width: 500px;
     text-align: center;
-    padding: 40px;
-    background: none;
-    border-radius: 0;
-    box-shadow: none;
 }
 
 input {
     width: 100%;
-    padding: 8px; /* Reduce padding to make them less tall */
-    font-size: 16px; /* Keep text readable */
+    padding: 10px;
+    font-size: 16px;
     border: 1px solid grey;
-    border-radius: 20px; /* Keeps pill shape */
+    border-radius: 20px;
     margin-bottom: 15px;
 }
 
@@ -94,7 +82,6 @@ input {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-bottom: 15px;
 }
 
 .signup-btn:hover {

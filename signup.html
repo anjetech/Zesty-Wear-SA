@@ -62,29 +62,26 @@
   </nav>
 <!-- Navbar ends-->
 
+        <!-- Main Content with Background -->
     <div class="container">
-        <!-- Left Side Image -->
-        <div class="left-image">
-            <img src="login2.jpg" alt="login image">
-        </div> 
-        
+        <div class="signup-form">
+            <h2><b>Register to Zesty Wear SA</b></h2>
+            <form action="signup.php" method="POST">
+                
+                <label for="name">Full Name</label>
+                <input type="email" id="name" name="name" required>
 
-        <!-- Right Side Login Form -->
-        <div class="right-form">
-            <div class="signup-form">
-                <h2><b> Register to Zesty Wear SA</b></h2>
-                <form action="signup.php" method="POST">
+                <label for="email">Email address</label>
+                <input type="email" id="email" name="email" required>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
 
-                    <label for="email">Email address</label>
-                    <input type="email" id="email" name="email" required>
-    
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required>
-    
-                    <button type="submit" class="signup-btn">Register</button>
-                </form>
-                <p>Already have an account? <a href="login.html">Log in</a></p>
-            </div>
+                <label for="password">Confirm Password</label>
+                <input type="password" id="password" name="password" required>
+                
+                <button type="submit" class="signup-btn">Register</button>
+            </form>
+            <p>Already have an account? <a href="login.html">Log in</a></p>
         </div>
     </div>
 
