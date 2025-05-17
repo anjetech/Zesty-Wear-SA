@@ -44,12 +44,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: main.html");
             exit();
         } else {
-            header("Location: login.html?error=Invalid email or password. Please try again.");
-
+            echo "<script>
+                alert('Invalid email or password. Please try again.');
+                window.location.href = 'login.html';
+            </script>";
             exit();
         }
-    } 
+    } else {
+        echo "<script>
+            alert('No account found with this email.');
+            window.location.href = 'login.html';
+        </script>";
+        exit();
+    }
+
     $stmt->close();
 }
+
 $conn->close();
 ?>

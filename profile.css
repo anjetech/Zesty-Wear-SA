@@ -1,0 +1,70 @@
+.navbar {
+    background-color: black !important;
+    height: 70px !important;  
+    font-size: 20px !important;
+    padding: 20px !important;
+    letter-spacing: 2px !important;
+}
+
+.nav-item:hover {
+    text-decoration: underline !important;
+    color: white;
+}
+
+.nav-items, .nav-link {
+    color: white !important;
+}
+
+.header-name {
+    font-size: 28px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: left;
+    font-style: italic;
+    color: rgb(255, 255, 255);
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover .header-name {
+    color:#d2c0c0;
+}
+
+.auth-links {
+    display: flex;
+    gap: 15px;
+    margin-left: 15px;
+}
+
+.login-link, .signup-link, .profile-link {
+    text-decoration: none;
+    font-weight: bold;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.login-link:hover, .signup-link:hover, .profile-link:hover {
+    text-decoration: underline;
+}
+
+.site-footer {
+    background-color: light gray;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 17px;
+    color: #333;
+}
+
+.footer-divider {
+    width: 90%;
+    height: 2px;
+    background-color: grey;
+    margin: 20px auto;
+}
+
+.footer-text {
+    margin-top: 15;
+}

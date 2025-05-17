@@ -55,7 +55,7 @@
          <div class = "auth-links">
           <a href = "login.html" class = "login-link">Log in</a>
           <a href = "signup.html" class = "signup-link">Register</a>
-          <a href = "profile.html" class = "profile-link">Profile</a>
+          
          </div>
       </div>
     </div>
@@ -88,18 +88,16 @@
       </footer>
       <!--Footer ends-->
       
-   <script>
-    function showAlertIfError() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const errorMessage = urlParams.get('error');
+   window.onload = function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const errorMessage = urlParams.get('error');
 
-        if (errorMessage) {
-            alert(errorMessage);
-            window.location.href = "login.html"; // Reloads without the error in the URL
-        }
+    if (errorMessage) {
+        alert(errorMessage);
+        history.replaceState(null, "", "login.html"); // Clears error from the URL without reloading
     }
-    document.getElementById("login-btn").addEventListener("click", showAlertIfError);
-</script>
+};
+
 
 
 </body>

@@ -100,14 +100,14 @@ input {
     margin-left: 15px;
 }
 
-.login-link, .signup-link, .profile-link {
+.login-link, .signup-link {
     text-decoration: none;
     font-weight: bold;
     color: #ffffff;
     font-size: 16px;
 }
 
-.login-link:hover, .signup-link:hover, .profile-link:hover {
+.login-link:hover, .signup-link:hover {
     text-decoration: underline;
 }
 
@@ -128,4 +128,8 @@ input {
 
 .footer-text {
     margin-top: 15;
+}
+
+.profile-link {
+    display: none !important;
 }
