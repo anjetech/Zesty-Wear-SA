@@ -55,7 +55,7 @@ a:hover .header-name {
     
 }
 
-.login-form {
+.signup-form {
     background: rgba(255, 255, 255, 0.9);
     padding: 40px;
     border-radius: 10px;
@@ -74,7 +74,7 @@ input {
     margin-bottom: 15px;
 }
 
-.login-btn {
+.signup-btn {
     width: 100%;
     padding: 12px;
     background-color: black;
@@ -84,11 +84,11 @@ input {
     cursor: pointer;
 }
 
-.login-btn:hover {
+.signup-btn:hover {
     background-color: grey;
 }
 
-.login-form h2 {
+.signup-form h2 {
     font-style: normal !important; 
     font-weight: bold !important; 
     font-size: 28px; 

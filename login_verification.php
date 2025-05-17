@@ -44,12 +44,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: main.html");
             exit();
         } else {
-            header("Location: login.html?error=Invalid email or passward. Please try again.");
+            header("Location: login.html?error=Invalid email or password. Please try again.");
+
             exit();
         }
-
+    } 
     $stmt->close();
 }
-
 $conn->close();
 ?>

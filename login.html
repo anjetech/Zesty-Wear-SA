@@ -64,7 +64,7 @@
 <!-- Navbar ends-->
 
     <div class="container">
-        <div class="login-form">
+        <div class="signup-form">
             <h2><b>Login to Zesty Wear SA</b></h2>
             
             <form action="login_verification.php" method="POST">
@@ -74,7 +74,7 @@
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" required>
 
-                <button type="submit" class="login-btn">Login</button>
+                <button type="submit" id="login-btn" class="signup-btn">Login</button>
             </form>
            <p>Don't have an account? <a href="signup.html">Register</a></p>
         </div>
@@ -88,17 +88,16 @@
       </footer>
       <!--Footer ends-->
       
-      <script>
-    function showAlertIfError(event) {
+   <script>
+    function showAlertIfError() {
         const urlParams = new URLSearchParams(window.location.search);
         const errorMessage = urlParams.get('error');
 
         if (errorMessage) {
             alert(errorMessage);
+            window.location.href = "login.html"; // Reloads without the error in the URL
         }
     }
-    
-    // Attach this function to your login button
     document.getElementById("login-btn").addEventListener("click", showAlertIfError);
 </script>
 
