@@ -64,16 +64,17 @@
 <!-- Navbar ends-->
 
     <div class="container">
-        <div class="signup-form">
+        <div class="login-form">
             <h2><b>Login to Zesty Wear SA</b></h2>
+            
             <form action="login_verification.php" method="POST">
- 
+
                 <label for="email">Email address</label>
                 <input type="email" id="email" name="email" required>
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" required>
 
-                <button type="submit" class="signup-btn">Login</button>
+                <button type="submit" class="login-btn">Login</button>
             </form>
            <p>Don't have an account? <a href="signup.html">Register</a></p>
         </div>
@@ -87,5 +88,20 @@
       </footer>
       <!--Footer ends-->
       
+      <script>
+    function showAlertIfError(event) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const errorMessage = urlParams.get('error');
+
+        if (errorMessage) {
+            alert(errorMessage);
+        }
+    }
+    
+    // Attach this function to your login button
+    document.getElementById("login-btn").addEventListener("click", showAlertIfError);
+</script>
+
+
 </body>
 </html>
