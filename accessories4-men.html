@@ -60,7 +60,7 @@
              <div class = "auth-links">
               <a href = "login.html" class = "login-link">Log in</a>
               <a href = "signup.html" class = "signup-link">Register</a>
-              <a href = "profile.html" class = "profile-link">Profile</a>
+              <a href = "profile.php" class = "profile-link">Profile</a>
              </div>
           </div>
         </div>
@@ -103,6 +103,19 @@
         <p class = "footer-text"> Created by: Anje Nieuwenhuis</p>
       </footer>
       <!--Footer ends-->
+
+      <!--Profile alert-->
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+    fetch('check_session.php')
+        .then(response => response.json())
+        .then(data => {
+            if (data.showAlert) {
+                alert("You need to log in to access your profile!");
+            }
+        });
+    });
+</script>
 
        <!--Linking my javascript file-->
     <script src="searchbar.js"></script>
