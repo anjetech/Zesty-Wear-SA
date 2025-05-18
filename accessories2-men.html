@@ -96,6 +96,19 @@
       </footer>
       <!--Footer ends-->
 
+      <!--Profile alert-->
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+    fetch('check_session.php')
+        .then(response => response.json())
+        .then(data => {
+            if (data.showAlert) {
+                alert("You need to log in to access your profile!");
+            }
+        });
+    });
+</script>
+
        <!--Linking my javascript file-->
     <script src="searchbar.js"></script>
 </body>

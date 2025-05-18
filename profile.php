@@ -51,20 +51,78 @@ $user = $result->fetch_assoc();
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
-    
+    <link rel="stylesheet" href="profile.css">
     <title>Profile | Zesty Wear SA</title>
     <style>
         <?php include 'profile.css'; ?>
     </style>
 </head>
 <body>
+<!-- Navbar begins-->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          
+          <a href="main.html">
+            <h1 class="header-name">Zesty Wear SA</h1>
+        </a>
+
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+              
+
+              <li class="nav-item">
+                <a href = "link00" class = "nav-link"><small> Chart</small></a>
+              </li>
+
+              <li class="nav-item">
+                <a href = "link00" class = "nav-link"><small>Sell Now</small></a>
+              </li>
+
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <small>Categories </small>
+                </a>
+
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="men.html">Men</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="woman.html">Woman</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="accessories.html">Accessories</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                </ul>
+              </li>
+            </ul>
+
+            <form id="searchForm" class="d-flex" role="search">
+              <input id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+          
+            <!-- Sign in/login links-->
+             <div class = "auth-links">
+              <a href = "login.html" class = "login-link">Log in</a>
+              <a href = "signup.html" class = "signup-link">Register</a>
+              <a href = "profile.php" class = "profile-link">Profile</a>
+             </div>
+
+          </div>
+        </div>
+        <hr>
+      </nav>
+<!-- Navbar ends-->
 
 <!-- Profile Section -->
 <div class="container mt-4">
-    <h2>Welcome, <?php echo htmlspecialchars($user['name']); ?></h2>
+    <h1><b>Welcome, <?php echo htmlspecialchars($user['name']); ?></b></h1>
     <p>Email: <?php echo htmlspecialchars($user['email']); ?></p>
 
-    <h3>Your Listings:</h3>
+    <h2>Your Listings:</h2>
     
     <form method="post">
         <button type="submit" name="logout" class="btn btn-danger">Logout</button>
@@ -78,5 +136,22 @@ $user = $result->fetch_assoc();
     <p class="footer-text">Created by: Anje Nieuwenhuis</p>
 </footer>
 
+
+  <!--Profile alert-->
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+    fetch('check_session.php')
+        .then(response => response.json())
+        .then(data => {
+            if (data.showAlert) {
+                alert("You need to log in to access your profile!");
+            }
+        });
+    });
+</script>
+
+    <!--Linking my javascript file-->
+    <script src="searchbar.js"></script>
+    
 </body>
 </html>
