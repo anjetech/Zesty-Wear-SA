@@ -1,6 +1,10 @@
 <?php
 session_start();
 
+// Enable error reporting
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 // Database Connection
 $servername = "localhost";
 $username = "root";
@@ -9,55 +13,76 @@ $dbname = "zestywearsa";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
 if ($conn->connect_error) {
-    die("<script>alert('Database connection failed: " . $conn->connect_error . "');</script>");
+    header("Location: signup.html?error_name=" . urlencode("Database connection failed."));
+    exit();
 }
 
 $conn->set_charset("utf8");
 
-// Handle registration
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = trim($_POST['name']); 
     $email = trim($_POST['email']); 
     $password = trim($_POST['password']); 
     $confirm_password = trim($_POST['confirm_password']); 
 
+    $errors = [];
+
+    // Validate name
+    if (empty($name)) {
+        $errors['error_name'] = "Name field is required.";
+    }
+
+    // Validate email
+    if (empty($email)) {
+        $errors['error_email'] = "Email field is required.";
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors['error_email'] = "Invalid email format.";
+    }
+
+    // Validate password
     if (empty($password)) {
-        echo "<script>alert('Error: Password field is empty!'); window.history.back();</script>";
-        exit();
+        $errors['error_password'] = "Password field is empty!";
     }
 
+    // Validate confirm password
     if ($password !== $confirm_password) {
-        echo "<script>alert('Error: Passwords do not match! Please try again.'); window.history.back();</script>";
+        $errors['error_confirm_password'] = "Passwords do not match.";
+    }
+
+    // Check if email already exists only if email format is valid and no email error yet
+    if (!isset($errors['error_email'])) {
+        $check_email = $conn->prepare("SELECT id FROM users WHERE email = ?");
+        $check_email->bind_param("s", $email);
+        $check_email->execute();
+        $check_email->store_result();
+
+        if ($check_email->num_rows > 0) {
+            $errors['error_email'] = "There is already an email address for that email. Please login.";
+        }
+        $check_email->close();
+    }
+
+    // If there are errors, redirect back with all errors
+    if (!empty($errors)) {
+        $query = http_build_query($errors);
+        header("Location: signup.html?$query");
         exit();
     }
 
-    // Check if email is already registered
-    $check_email = $conn->prepare("SELECT id FROM users WHERE email = ?");
-    $check_email->bind_param("s", $email);
-    $check_email->execute();
-    $check_email->store_result();
-
-    if ($check_email->num_rows > 0) {
-        echo "<script>alert('Email is already registered! Please use a different one.'); window.history.back();</script>";
-        exit();
-    }
-    $check_email->close();
-
-    // Insert user with plain-text password (consider hashing for security!)
+    // Insert user (consider hashing password)
     $stmt = $conn->prepare("INSERT INTO users (name, email, password) VALUES (?, ?, ?)");
     $stmt->bind_param("sss", $name, $email, $password);
 
     if ($stmt->execute()) {
-        $_SESSION['user_id'] = $stmt->insert_id; // Automatically log in the user
+        $_SESSION['user_id'] = $stmt->insert_id;
+        $_SESSION['email'] = $email;
 
-        echo "<script>
-                alert('Registration successful! Redirecting to your profile...');
-                window.location.href='profile.php';
-              </script>";
+        header("Location: profile.php");
+        exit();
     } else {
-        echo "<script>alert('Database error: " . $stmt->error . "');</script>";
+        header("Location: signup.html?error_name=" . urlencode("Database error: " . $stmt->error));
+        exit();
     }
 
     $stmt->close();

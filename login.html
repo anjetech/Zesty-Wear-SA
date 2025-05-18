@@ -66,6 +66,9 @@
     <div class="container">
         <div class="signup-form">
             <h2><b>Login to Zesty Wear SA</b></h2>
+            <!-- Error message container -->
+
+            <div id="error-message" class="text-danger mb-2 fw-bold"></div>
             
             <form action="login_verification.php" method="POST">
 
@@ -88,15 +91,23 @@
       </footer>
       <!--Footer ends-->
       
-   window.onload = function() {
+  <script>
+window.onload = function () {
     const urlParams = new URLSearchParams(window.location.search);
     const errorMessage = urlParams.get('error');
 
     if (errorMessage) {
-        alert(errorMessage);
-        history.replaceState(null, "", "login.html"); // Clears error from the URL without reloading
+        // Display the error inside the designated div
+        const errorDiv = document.getElementById('error-message');
+        if (errorDiv) {
+            errorDiv.textContent = decodeURIComponent(errorMessage);
+        }
+
+        // Clean the URL without reloading the page
+        history.replaceState(null, "", window.location.pathname);
     }
 };
+</script>
 
 
 
