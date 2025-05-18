@@ -68,3 +68,20 @@ a:hover .header-name {
 .footer-text {
     margin-top: 15;
 }
+
+.logout-btn {
+    padding: 8px 28px; /* Reduce height while increasing length */
+    background-color: rgb(35, 35, 35);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+    border-radius: 50px; /* Turns it into a pill-shaped button */
+}
+
+.logout-btn:hover {
+    background-color: rgb(105, 105, 105);
+}
+
+

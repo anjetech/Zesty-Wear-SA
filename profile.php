@@ -125,7 +125,7 @@ $user = $result->fetch_assoc();
     <h2>Your Listings:</h2>
     
     <form method="post">
-        <button type="submit" name="logout" class="btn btn-danger">Logout</button>
+        <button type="submit" name="logout" class="logout-btn">Logout</button>
     </form>
 </div>
 
@@ -152,6 +152,6 @@ $user = $result->fetch_assoc();
 
     <!--Linking my javascript file-->
     <script src="searchbar.js"></script>
-    
+
 </body>
 </html>
