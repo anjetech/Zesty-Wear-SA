@@ -40,7 +40,7 @@ a {
 }
 
 .container {
-    background: url('shoes.jpg') no-repeat center center;
+    background: url('login4.jpg') no-repeat center center;
     background-size:cover; /* Ensures the image fully stretches */
     background-position: center; /* Centers the image perfectly */
     width: 100vw; /* Full viewport width */
