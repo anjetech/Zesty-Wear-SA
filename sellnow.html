@@ -49,30 +49,31 @@
 </nav>
 
 <div class="container">
-    <div class="signup-form">
-        <h2><b>Sell Now with Zesty Wear SA</b></h2>
+    <div class="sell-form">
+        <h2><b>Sell Your Product</b></h2>
 
-        <form action="user_registration.php" method="POST">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" required />
-           
+        <form action="upload.php" method="POST" enctype="multipart/form-data">
+            <label for="productName">Product Name</label>
+            <input type="text" id="productName" name="productName" required>
 
-            <label for="email">Email address</label>
-            <input type="email" id="email" name="email" required />
-            
+            <label for="category">Category</label>
+            <select id="category" name="category">
+                <option value="Men">Men</option>
+                <option value="Women">Women</option>
+                <option value="Accessories">Accessories</option>
+            </select>
 
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required />
-            
+            <label for="description">Description</label>
+            <textarea id="description" name="description" rows="3" required></textarea>
 
-            <label for="confirm_password">Confirm Password</label>
-            <input type="password" id="confirm_password" name="confirm_password" required />
-            
+            <label for="price">Price</label>
+            <input type="number" id="price" name="price" required>
 
-            <button type="submit" class="signup-btn">Register</button>
+            <label for="photo">Upload Product Image</label>
+            <input type="file" id="photo" name="photo" accept="image/*" required>
+
+            <button type="submit" class="sell-btn">Submit Product</button>
         </form>
-
-        <p>Already have an account? <a href="login.html">Log in</a></p>
     </div>
 </div>
 
