@@ -2,7 +2,7 @@
     background-color: black !important;
     height: 70px !important;  
     font-size: 20px !important;
-    padding: 20px !important;
+    padding: 15px !important; /* Reduced padding */
     letter-spacing: 2px !important;
 }
 
@@ -57,6 +57,9 @@ a {
     width: 80%;
     max-width: 450px; /* Reduced max width */
     text-align: center;
+    margin-top: 50px; /* Moves form lower */
+    max-height: 500px; /* Limits height */
+    overflow: auto; /* Enables scrolling if needed */
 }
 
 input, select, textarea {
@@ -78,7 +81,6 @@ input, select, textarea {
     cursor: pointer;
 }
 
-
 .sell-btn:hover {
     background-color: grey;
 }
@@ -91,9 +93,9 @@ input, select, textarea {
 
 .site-footer {
     background-color: light gray;
-    padding: 20px;
+    padding: 20px 0;
     text-align: center;
-    font-size: 17px;
+    font-size: 14px;
     color: #333;
 }
 
