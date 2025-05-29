@@ -93,14 +93,26 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center; /* Centers images properly */
     max-width: 250px;
+    min-height: 300px; /* Ensures images load within a fixed container */
 }
+
+img {
+    animation: none !important;
+    transition: none !important;
+}
+
 
 .product img {
     width: 100%;
+    max-width: 250px; /* Ensures consistent image width */
     height: auto;
     border-radius: 8px;
+    display: block; /* Prevents hidden images */
+    object-fit: cover; /* Ensures images maintain proportions */
 }
+
 
 .product-details {
     display: flex;

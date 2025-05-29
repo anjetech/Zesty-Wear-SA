@@ -146,5 +146,50 @@
 
    <!--Linking my javascript file-->
    <script src="searchbar.js"></script>
+
+   <script>
+document.addEventListener("DOMContentLoaded", function() {
+    let categoryFile = "";
+
+    // Detect which page is open and fetch the correct category file
+    if (window.location.pathname.includes("men.html")) {
+        categoryFile = "fetch_men_products.php";
+    } else if (window.location.pathname.includes("woman.html")) {
+        categoryFile = "fetch_woman_products.php";
+    } else if (window.location.pathname.includes("men_accessories.html")) {
+        categoryFile = "fetch_men_accessories_products.php";
+    } else if (window.location.pathname.includes("woman_accessories.html")) {
+        categoryFile = "fetch_woman_accessories_products.php";
+    }
+
+    // Fetch the category's products and display them
+    fetch(categoryFile)
+        .then(response => response.json())
+        .then(products => {
+            const container = document.querySelector(".product-grid"); // Find product section
+
+            // Clear existing static products
+            container.innerHTML = "";
+
+            // Loop through products and create dynamic HTML elements
+            products.forEach(product => {
+                const productCard = document.createElement("div");
+                productCard.className = "product";
+                productCard.innerHTML = `
+                    <a href="product_description.php?id=${product.id}" class="image-link">
+                        <img src="${product.image}" alt="${product.name}">
+                    </a>
+                    <div class="product-details">
+                        <p class="description">${product.name}</p>
+                        <p class="price">${product.price}</p>
+                    </div>
+                `;
+                container.appendChild(productCard);
+            });
+        })
+        .catch(error => console.error("Error loading products:", error));
+});
+</script>
+
 </body>
 </html>

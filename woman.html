@@ -78,7 +78,7 @@
    <!--image 1-->
    <div class = "product">
      <a href = "woman-description1.html" class = "image-link">
-     <img src = "woman-jeans.jpg" alt = "woman-jeans">
+    <img src="http://localhost/ZestyWearSA/woman-jeans.jpg" alt="Woman Jeans">
    </a>
      <div class = "product-details">
        <p class = "description"> Woman Jeans</p>
@@ -89,7 +89,7 @@
    <!--image 2-->
    <div class = "product">
      <a href = "woman-description2.html" class = "image-link">
-     <img src = "jean-suit-woman.jpg" alt = "Jeans Suit">
+     <img src = "http://localhost/ZestyWearSA/jean-suit-woman.jpg" alt = "Jeans Suit">
    </a>
      <div class = "product-details">
        <p class = "description"> Jeans Suit</p>
@@ -100,7 +100,7 @@
    <!--image 3-->
    <div class = "product">
      <a href = "woman-description3.html" class = "image-link">
-     <img src = "leather-jacket.jpg" alt = "leather-jacket">
+     <img src = "http://localhost/ZestyWearSA/leather-jacket.jpg" alt = "leather-jacket">
    </a>
      <div class = "product-details">
        <p class = "description"> Black Leather Jacket</p>
@@ -111,7 +111,7 @@
    <!--image 4-->
    <div class = "product">
      <a href = "woman-description4.html" class = "image-link">
-     <img src = "white-dress.jpg" alt = "white-dress">
+     <img src = "http://localhost/ZestyWearSA/white-dress.jpg" alt = "white-dress">
    </a>
      <div class = "product-details">
        <p class = "description"> White Dress</p>
@@ -146,5 +146,46 @@
 
    <!--Linking my javascript file-->
    <script src="searchbar.js"></script>
+
+   <script>
+document.addEventListener("DOMContentLoaded", function() {
+    let categoryFile = "";
+
+    if (window.location.pathname.includes("men.html")) {
+        categoryFile = "fetch_men_products.php";
+    } else if (window.location.pathname.includes("woman.html")) {
+        categoryFile = "fetch_woman_products.php";
+    } else if (window.location.pathname.includes("men_accessories.html")) {
+        categoryFile = "fetch_men_accessories_products.php";
+    } else if (window.location.pathname.includes("woman_accessories.html")) {
+        categoryFile = "fetch_woman_accessories_products.php";
+    }
+
+    fetch(categoryFile)
+        .then(response => response.json())
+        .then(products => {
+            const container = document.querySelector(".product-grid");
+            container.innerHTML = "";
+
+            products.forEach(product => {
+                const productCard = document.createElement("div");
+                productCard.className = "product";
+                productCard.innerHTML = `
+                    <a href="product_description.php?id=${product.id}" class="image-link">
+                        <img src="${product.image}" alt="${product.name}" onerror="this.src='placeholder.jpg';">
+                    </a>
+                    <div class="product-details">
+                        <p class="description">${product.name}</p>
+                        <p class="price">${product.price}</p>
+                    </div>
+                `;
+                container.appendChild(productCard);
+            });
+        })
+        .catch(error => console.error("Error loading products:", error));
+});
+</script>
+
+
 </body>
 </html>
