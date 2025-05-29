@@ -6,9 +6,10 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="woman-description4.css">
+    <link rel="stylesheet" href="accessories.css">
 
-    <title>Woman's Collection - Product Details| Zesty Wear SA</title>
+    <title>Accessories | Zesty Wear SA
+    </title>
 </head>
 <body>
     <!-- Navbar begins-->
@@ -64,48 +65,73 @@
               <a href = "signup.html" class = "signup-link">Register</a>
               <a href = "profile.php" class = "profile-link">Profile</a>
              </div>
+            
           </div>
         </div>
         <hr>
       </nav>
 <!-- Navbar ends-->
 
-  <div class = "container">
-        <!--Add the Product image-->
-        <div class = "left-image">
-            <img src = "white-dress.jpg" alt = "white-dress">
-        </div>
+ <!--Womans Accessories collection begins-->
+ <h2 class = "woman-heading"> Woman's Accessories Collection</h2>
 
-        <div class = "right-form">
-        <!-- Added the product details-->
-        <div class = "product-info">
-            <h1> White Dress</h1>
-            <p class = "price"> R180.00</p>
-            <p class = "description"> A sleeveless, knee-length white dress complemented with a black denim jacket, balancing elegance with a relaxed vibe.</p>
+ <div class = "product-grid">
+   <!--image 1-->
+   <div class = "product">
+    <a href = "accessories1-woman.html" class = "image-link">
+     <img src = "earrings.jpg" alt = "woman-earrings">
+    </a>
+     <div class = "product-details">
+       <p class = "description"> Woman Earrings</p>
+       <p class = "price"> R130.00</p>
+     </div>
+   </div>
+ 
+   <!--image 2-->
+   <div class = "product">
+    <a href = "accessories2-woman.html" class = "image-link">
+     <img src = "travel-bag.jpg" alt = "travel-bag">
+    </a>
+     <div class = "product-details">
+       <p class = "description">Handbag</p>
+       <p class = "price"> R220.00</p>
+     </div>
+   </div>
+ 
+   <!--image 3-->
+   <div class = "product">
+    <a href = "accessories3-woman.html" class = "image-link">
+     <img src = "make-up-bag.jpg" alt = "make-up-bag">
+    </a>
+     <div class = "product-details">
+       <p class = "description"> Make-Up Bag</p>
+       <p class = "price"> R180.00</p>
+     </div>
+   </div>
+ 
+   <!--image 4-->
+   <div class = "product">
+    <a href = "accessories4-woman.html" class = "image-link">
+     <img src = "necklace.jpg" alt = "necklace">
+    </a>
+     <div class = "product-details">
+       <p class = "description"> Necklace</p>
+       <p class = "price"> R140.00</p>
+     </div>
+   </div>
+ 
+ </div>
+ <!-- womans Accessories collection ends-->
 
-            <!-- Add the size selection-->
-            <p><b>Select Size:</b></p>
-            <div class="size-options">
-                <label><input type="radio" name="size" value="M"> Small</label>
-            </div>
-            
-             <!--Add the button for the cart-->
-             <button class = "add-to-cart">ADD TO CART</button>
+<!--Footer of my website begins-->
+<footer class = "site-footer">
+    <hr class = "footer-divider">
+    <p class = "footer-text">© 2025 Zesty Wear SA | Privacy | Terms | Opt-Out Rights</p>
+    <p class = "footer-text"> Created by: Anje Nieuwenhuis</p>
+  </footer>
+  <!--Footer ends-->
 
-        </div>
-      </div>
-    </div>
-  
-
-     <!--Footer of my website begins-->
-     <footer class = "site-footer">
-        <hr class = "footer-divider">
-        <p class = "footer-text">© 2025 Zesty Wear SA | Privacy | Terms | Opt-Out Rights</p>
-        <p class = "footer-text"> Created by: Anje Nieuwenhuis</p>
-      </footer>
-      <!--Footer ends-->
-
-      <!--Profile alert-->
+  <!--Profile alert-->
     <script>
     document.addEventListener("DOMContentLoaded", function() {
     fetch('check_session.php')
@@ -118,7 +144,7 @@
     });
 </script>
 
-      <!--Linking my javascript file-->
-    <script src="searchbar.js"></script>
+   <!--Linking my javascript file-->
+   <script src="searchbar.js"></script>
 </body>
 </html>
