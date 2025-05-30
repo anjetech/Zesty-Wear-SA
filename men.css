@@ -73,7 +73,7 @@ body {
     text-decoration: underline;
 }
 
-.mens-heading {
+.men-heading {
     text-align:center;
     font-size: 36px;
     font-weight: bold;
@@ -84,23 +84,38 @@ body {
 
 .product-grid {
     display: flex;
-    grid-template-columns: repeat(4,1fr);
+    flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
+}
+
+.product-row {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 20px; /* Adds spacing between rows */
 }
 
 .product {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 250px;
+    width: 22%; /* Ensures 4 items fit per row */
+    margin: 1%;
+    box-sizing: border-box;
 }
+
+img {
+    animation: none !important;
+    transition: none !important;
+}
+
 
 .product img {
     width: 100%;
+    max-width: 250px; /* Ensures consistent image width */
     height: auto;
     border-radius: 8px;
+    display: block; /* Prevents hidden images */
+    object-fit: cover; /* Ensures images maintain proportions */
 }
+
 
 .product-details {
     display: flex;
