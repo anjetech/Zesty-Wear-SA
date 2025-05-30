@@ -10,7 +10,7 @@ if ($conn->connect_error) {
 }
 
 // Fetch products from the database (Make sure "Men Accessories" matches database entries)
-$sql = "SELECT name, description, price, image_path FROM product WHERE category='Men Accessories'";
+$sql = "SELECT id, name, description, price, image_path FROM product WHERE category='Men Accessories'";
 $result = $conn->query($sql);
 ?>
 
@@ -72,33 +72,26 @@ $result = $conn->query($sql);
 <h2 class="men-accessories-heading">Men's Accessories Collection</h2>
 
 <div class="product-grid">
-    <?php
+       <?php
     $counter = 0;
 
     while ($row = $result->fetch_assoc()) {
-        if ($counter % 4 == 0) {
-            echo "<div class='product-row'>";
-        }
+    if ($counter % 4 == 0) { echo "<div class='product-row'>"; }
 
-        echo "<div class='product'>";
-        echo "<a href='#' class='image-link'>";
-        echo "<img src='http://localhost/ZestyWearSA/" . htmlspecialchars($row['image_path']) . "' alt='" . htmlspecialchars($row['name']) . "'>";
-        echo "</a>";
-        echo "<div class='product-details'>";
-        echo "<p class='description'>" . htmlspecialchars($row['name']) . "</p>";
-        echo "<p class='price'>R" . htmlspecialchars($row['price']) . "</p>";
-        echo "</div></div>";
+    echo "<div class='product'>";
+    echo "<a href='men_acc_description.php?id=" . $row['id'] . "' class='image-link'>";
+    echo "<img src='http://localhost/ZestyWearSA/" . htmlspecialchars($row['image_path']) . "' alt='" . htmlspecialchars($row['name']) . "'>";
+    echo "</a>";
+    echo "<div class='product-details'>";
+    echo "<p class='description'>" . htmlspecialchars($row['name']) . "</p>";
+    echo "<p class='price'>R" . htmlspecialchars($row['price']) . "</p>";
+    echo "</div></div>";
 
-        $counter++;
+    $counter++;
+    if ($counter % 4 == 0) { echo "</div>"; }
+}
+if ($counter % 4 != 0) { echo "</div>"; }
 
-        if ($counter % 4 == 0) {
-            echo "</div>";
-        }
-    }
-
-    if ($counter % 4 != 0) {
-        echo "</div>";
-    }
     ?>
 </div>
 

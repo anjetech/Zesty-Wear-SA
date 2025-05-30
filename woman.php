@@ -10,7 +10,7 @@ if ($conn->connect_error) {
 }
 
 // Fetch products from the database
-$sql = "SELECT name, description, price, image_path FROM product WHERE category='Woman'";
+$sql = "SELECT id, name, description, price, image_path FROM product WHERE category='Woman'";
 $result = $conn->query($sql);
 ?>
 
@@ -73,38 +73,27 @@ $result = $conn->query($sql);
 
     <div class="product-grid">
     <?php
-    $counter = 0; // Track number of items per row
+    $counter = 0;
 
     while ($row = $result->fetch_assoc()) {
-        // Start a new row every 4 items
-        if ($counter % 4 == 0) {
-            echo "<div class='product-row'>";
-        }
+    if ($counter % 4 == 0) { echo "<div class='product-row'>"; }
 
-        echo "<div class='product'>";
-        echo "<a href='#' class='image-link'>";
-        echo "<img src='http://localhost/ZestyWearSA/" . htmlspecialchars($row['image_path']) . "' alt='" . htmlspecialchars($row['name']) . "'>";
-        echo "</a>";
-        echo "<div class='product-details'>";
-        echo "<p class='description'>" . htmlspecialchars($row['name']) . "</p>";
-        echo "<p class='price'>R" . htmlspecialchars($row['price']) . "</p>";
-        echo "</div></div>";
+    echo "<div class='product'>";
+    echo "<a href='woman_description.php?id=" . $row['id'] . "' class='image-link'>";
+    echo "<img src='http://localhost/ZestyWearSA/" . htmlspecialchars($row['image_path']) . "' alt='" . htmlspecialchars($row['name']) . "'>";
+    echo "</a>";
+    echo "<div class='product-details'>";
+    echo "<p class='description'>" . htmlspecialchars($row['name']) . "</p>";
+    echo "<p class='price'>R" . htmlspecialchars($row['price']) . "</p>";
+    echo "</div></div>";
 
-        $counter++;
+    $counter++;
+    if ($counter % 4 == 0) { echo "</div>"; }
+}
+if ($counter % 4 != 0) { echo "</div>"; }
 
-        // Close the row after every 4 items
-        if ($counter % 4 == 0) {
-            echo "</div>";
-        }
-    }
-
-    // Ensure any unclosed row is properly closed
-    if ($counter % 4 != 0) {
-        echo "</div>";
-    }
     ?>
 </div>
-
     <!--Footer of my website begins-->
     <footer class = "site-footer">
       <hr class = "footer-divider">
