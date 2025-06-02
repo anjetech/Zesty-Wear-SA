@@ -10,6 +10,15 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    die("You must be logged in to add products.");
+}
+
+$user_id = $_SESSION['user_id'];
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form inputs
     $name = trim($_POST['name']);
@@ -32,12 +41,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Move uploaded image file to correct directory
     if (move_uploaded_file($_FILES["image_path"]["tmp_name"], $target_file)) {
         // Insert data into the database
-        $sql = "INSERT INTO product (name, description, size, price, image_path, category) 
-        VALUES ('$name', '$description', '$size', '$price', '$image_filename', 
+        $sql = "INSERT INTO product (user_id, name, description, size, price, image_path, category) 
+        VALUES ('$user_id', '$name', '$description', '$size', '$price', '$image_filename', 
         CASE 
-            WHEN '$category' IN ('Men', 'Woman', 'Men Accessories', 'Woman Accessories') THEN '$category' 
-            ELSE 'Unknown' 
+        WHEN '$category' IN ('Men', 'Woman', 'Men Accessories', 'Woman Accessories') THEN '$category' 
+        ELSE 'Unknown' 
         END)";
+
 
 
         // Execute query

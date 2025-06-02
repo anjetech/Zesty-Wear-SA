@@ -84,4 +84,13 @@ a:hover .header-name {
     background-color: rgb(105, 105, 105);
 }
 
-
+.card {
+    height: 400px; /* Adjust as needed */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.card-img-top {
+    height: 200px;
+    object-fit: cover; /* Ensures images maintain proportion */
+}

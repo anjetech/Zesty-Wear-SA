@@ -59,7 +59,7 @@ $sizes = explode(",", $product['size']); // Splits sizes stored as "M,L,S,S" int
               <li class="nav-item">
                 <a href = "sellnow.html" class = "nav-link"><small>Sell Now</small></a>
               </li>
-              
+
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <small>Categories </small>
@@ -76,26 +76,22 @@ $sizes = explode(",", $product['size']); // Splits sizes stored as "M,L,S,S" int
                   <li><hr class="dropdown-divider"></li>
                 </ul>
               </li>
-
             </ul>
 
             <form id="searchForm" class="d-flex" role="search">
               <input id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
-
+          
             <!-- Sign in/login links-->
              <div class = "auth-links">
               <a href = "login.html" class = "login-link">Log in</a>
               <a href = "signup.html" class = "signup-link">Register</a>
               <a href = "profile.php" class = "profile-link">Profile</a>
              </div>
-            
-          
-            
+
           </div>
         </div>
-        <hr>
       </nav>
 <!-- Navbar ends-->
 

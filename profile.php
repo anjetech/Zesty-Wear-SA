@@ -18,7 +18,7 @@ if ($conn->connect_error) {
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['logout'])) {
     $_SESSION = [];
     session_destroy();
-    
+
     echo "<script>
             alert('You have been logged out successfully.');
             window.location.href='main.html';
@@ -28,8 +28,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['logout'])) {
 
 // If user is NOT logged in, set session flag instead of redirecting immediately
 if (!isset($_SESSION['user_id'])) {
-    $_SESSION['login_alert'] = true; // Set alert flag
-    header("Location: main.html"); // Redirect user without showing alert in profile.php
+    $_SESSION['login_alert'] = true;
+    header("Location: main.html");
     exit();
 }
 
@@ -41,6 +41,13 @@ $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
 $user = $result->fetch_assoc();
+
+// Fetch user's product listings
+$product_sql = "SELECT id, name, description, size, price, image_path, category FROM product WHERE user_id = ?";
+$product_stmt = $conn->prepare($product_sql);
+$product_stmt->bind_param("i", $user_id);
+$product_stmt->execute();
+$product_result = $product_stmt->get_result();
 ?>
 
 <!DOCTYPE html>
@@ -48,16 +55,16 @@ $user = $result->fetch_assoc();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <title>Profile | Zesty Wear SA</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="profile.css">
-    <title>Profile | Zesty Wear SA</title>
     <style>
         <?php include 'profile.css'; ?>
     </style>
 </head>
 <body>
+
 <!-- Navbar begins-->
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
@@ -73,14 +80,12 @@ $user = $result->fetch_assoc();
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-              
-
               <li class="nav-item">
-                <a href = "link00" class = "nav-link"><small> Chart</small></a>
+                <a href = "chart.html" class = "nav-link"><small> Chart</small></a>
               </li>
 
               <li class="nav-item">
-                <a href = "link00" class = "nav-link"><small>Sell Now</small></a>
+                <a href = "sellnow.html" class = "nav-link"><small>Sell Now</small></a>
               </li>
 
               <li class="nav-item dropdown">
@@ -115,7 +120,6 @@ $user = $result->fetch_assoc();
 
           </div>
         </div>
-        <hr>
       </nav>
 <!-- Navbar ends-->
 
@@ -125,7 +129,50 @@ $user = $result->fetch_assoc();
     <p>Email: <?php echo htmlspecialchars($user['email']); ?></p>
 
     <h2>Your Listings:</h2>
-    
+
+    <?php if ($product_result->num_rows > 0): ?>
+        <div class="row">
+            <?php while ($product = $product_result->fetch_assoc()): ?>
+                <div class="col-md-3">
+                    <div class="card mb-3">
+                        <img src="<?php echo htmlspecialchars($product['image_path']); ?>" class="card-img-top" alt="Product Image">
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo htmlspecialchars($product['name']); ?></h5>
+                            <p class="card-text"><?php echo htmlspecialchars($product['description']); ?></p>
+                            <p class="card-text"><strong>Size:</strong> <?php echo htmlspecialchars($product['size']); ?></p>
+                            <p class="card-text"><strong>Price:</strong> R<?php echo htmlspecialchars($product['price']); ?></p>
+                            <p class="card-text"><strong>Category:</strong> <?php echo htmlspecialchars($product['category']); ?></p>
+
+                            <?php
+                                $category = strtolower(trim($product['category']));
+                                $categoryPage = "main.html"; // fallback
+
+                                switch ($category) {
+                                    case 'woman':
+                                        $categoryPage = "woman.php";
+                                        break;
+                                    case 'men':
+                                        $categoryPage = "men.php";
+                                        break;
+                                    case 'woman accessories':
+                                        $categoryPage = "woman_accessories.php";
+                                        break;
+                                    case 'men accessories':
+                                        $categoryPage = "men_accessories.php";
+                                        break;
+                                }
+                            ?>
+
+                            <a href="<?php echo $categoryPage; ?>" class="btn btn-primary mt-2">View Product</a>
+                        </div>
+                    </div>
+                </div>
+            <?php endwhile; ?>
+        </div>
+    <?php else: ?>
+        <p>You have no listings yet.</p>
+    <?php endif; ?>
+
     <form method="post">
         <button type="submit" name="logout" class="logout-btn">Logout</button>
     </form>
@@ -138,22 +185,19 @@ $user = $result->fetch_assoc();
     <p class="footer-text">Created by: Anje Nieuwenhuis</p>
 </footer>
 
-
-  <!--Profile alert-->
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-    fetch('check_session.php')
-        .then(response => response.json())
-        .then(data => {
-            if (data.showAlert) {
-                alert("You need to log in to access your profile!");
-            }
-        });
+<!-- Profile alert -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        fetch('check_session.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data.showAlert) {
+                    alert("You need to log in to access your profile!");
+                }
+            });
     });
 </script>
 
-    <!--Linking my javascript file-->
-    <script src="searchbar.js"></script>
-
+<script src="searchbar.js"></script>
 </body>
 </html>

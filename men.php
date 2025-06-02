@@ -26,21 +26,34 @@ $result = $conn->query($sql);
 </head>
 <body>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg">
+<!-- Navbar begins-->
+    <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
+          
           <a href="main.html">
             <h1 class="header-name">Zesty Wear SA</h1>
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+        </a>
+
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
+
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto">
-              <li class="nav-item"><a href="chart.html" class="nav-link">Chart</a></li>
-              <li class="nav-item"><a href="sellnow.html" class="nav-link">Sell Now</a></li>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+              <li class="nav-item">
+                <a href = "chart.html" class = "nav-link"><small> Chart</small></a>
+              </li>
+
+              <li class="nav-item">
+                <a href = "sellnow.html" class = "nav-link"><small>Sell Now</small></a>
+              </li>
+
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Categories</a>
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <small>Categories </small>
+                </a>
+
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="men.php">Men</a></li>
                   <li><hr class="dropdown-divider"></li>
@@ -58,16 +71,18 @@ $result = $conn->query($sql);
               <input id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
-
-            <div class="auth-links">
-              <a href="login.html" class="login-link">Log in</a>
-              <a href="signup.html" class="signup-link">Register</a>
+          
+            <!-- Sign in/login links-->
+             <div class = "auth-links">
+              <a href = "login.html" class = "login-link">Log in</a>
+              <a href = "signup.html" class = "signup-link">Register</a>
               <a href = "profile.php" class = "profile-link">Profile</a>
-            </div>
+             </div>
+
           </div>
         </div>
-        <hr>
-    </nav>
+      </nav>
+<!-- Navbar ends-->
 
 <h2 class="men-heading">Men's Collection</h2>
 
