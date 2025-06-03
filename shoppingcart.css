@@ -1,0 +1,96 @@
+.navbar {
+    background-color: black !important;
+    height: 70px !important;  
+    font-size: 20px !important;
+    padding: 20px !important;
+    letter-spacing: 2px !important;
+}
+
+.nav-item:hover {
+    text-decoration: underline !important;
+    color: white;
+}
+
+.nav-items, .nav-link {
+    color: white !important;
+}
+
+.header-name {
+    font-size: 28px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: left;
+    font-style: italic;
+    color: rgb(255, 255, 255);
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover .header-name {
+    color:#d2c0c0;
+}
+
+.auth-links {
+    display: flex;
+    gap: 15px;
+    margin-left: 15px;
+}
+
+.login-link, .signup-link, .profile-link {
+    text-decoration: none;
+    font-weight: bold;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.login-link:hover, .signup-link:hover, .profile-link:hover {
+    text-decoration: underline;
+}
+
+.site-footer {
+    background-color: light gray;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 17px;
+    color: #333;
+}
+
+.footer-divider {
+    width: 90%;
+    height: 2px;
+    background-color: grey;
+    margin: 20px auto;
+}
+
+.footer-text {
+    margin-top: 15;
+}
+
+.pay-btn {
+    padding: 8px 28px; /* Reduce height while increasing length */
+    background-color: rgb(35, 35, 35);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+    border-radius: 50px; /* Turns it into a pill-shaped button */
+}
+
+.pay-btn:hover {
+    background-color: rgb(105, 105, 105);
+}
+
+.card {
+    height: 400px; /* Adjust as needed */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.card-img-top {
+    height: 200px;
+    object-fit: cover; /* Ensures images maintain proportion */
+}
