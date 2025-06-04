@@ -12,29 +12,81 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// If user is NOT logged in, redirect to main page
+// Redirect if user is NOT logged in
 if (!isset($_SESSION['user_id'])) {
     $_SESSION['login_alert'] = true;
     header("Location: main.html");
     exit();
 }
 
+$user_id = $_SESSION['user_id'];
+$sql_user = "SELECT name FROM users WHERE id = ?";
+$stmt_user = $conn->prepare($sql_user);
+$stmt_user->bind_param("i", $user_id);
+$stmt_user->execute();
+$result_user = $stmt_user->get_result();
+$user = $result_user->fetch_assoc(); // Store user data
+
+
+// Fetch user's cart items from the database
+$cartItems = [];
+$sql = "SELECT user_cart.quantity, user_cart.product_id, product.name, product.price, product.image_path 
+        FROM user_cart 
+        JOIN product ON user_cart.product_id = product.id 
+        WHERE user_cart.user_id = ?";
+
+
+
+
+
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+
+while ($row = $result->fetch_assoc()) {
+    $cartItems[] = $row;
+}
+
+// Function to calculate total price
+function calculateTotal($cartItems) {
+    $total = 0;
+    foreach ($cartItems as $item) {
+        $total += $item["price"] * $item["quantity"];
+    }
+    return $total;
+}
+
+$totalPrice = calculateTotal($cartItems);
+
 // Handle "Add to Cart" functionality
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["add-to-cart"])) {
-    $product = [
-        "id" => $_POST["id"],
-        "name" => $_POST["name"],
-        "description" => $_POST["description"],
-        "price" => $_POST["price"],
-        "image" => $_POST["image"],
-        "size" => $_POST["size"]
-    ];
-    
+    $product_id = $_POST["id"];
+    $name = $_POST["name"];
+    $price = $_POST["price"];
+    $size = $_POST["size"];
+    $image = $_POST["image"];
+
+    // Store in session
     if (!isset($_SESSION["cart"])) {
         $_SESSION["cart"] = [];
     }
+  $_SESSION["cart"][] = [
+    "id" => $product_id, // Use `product_id` instead of `id`
+    "name" => $name,
+    "price" => $price,
+    "size" => $size,
+    "image" => $image
+];
 
-    $_SESSION["cart"][] = $product;
+
+    // Store in database (persistent cart)
+    $sql = "INSERT INTO user_cart (user_id, product_id, quantity) VALUES (?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("iii", $user_id, $product_id, $quantity);
+    $stmt->execute();
+
 
     header("Location: shoppingcart.php");
     exit();
@@ -42,24 +94,34 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["add-to-cart"])) {
 
 // Handle "Remove from Cart" functionality
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["remove_item"])) {
-    $index = $_POST["index"];
-    unset($_SESSION["cart"][$index]);
+    $product_id = $_POST["product_id"];
+    $user_id = $_SESSION["user_id"];
 
-    // Re-index the array to prevent gaps in indexes
-    $_SESSION["cart"] = array_values($_SESSION["cart"]);
+    // Remove product from the database
+    $sql = "DELETE FROM user_cart WHERE user_id = ? AND product_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ii", $user_id, $product_id);
+    $stmt->execute();
 
+    // Refresh the page to update the cart display
     header("Location: shoppingcart.php");
     exit();
 }
 
-// Fetch user details
-$user_id = $_SESSION['user_id'];
-$sql = "SELECT name, email FROM users WHERE id = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $user_id);
-$stmt->execute();
-$result = $stmt->get_result();
-$user = $result->fetch_assoc();
+
+// Handle Checkout: Clear Cart & Redirect
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["checkout"])) {
+    $sql = "DELETE FROM user_cart WHERE user_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+
+    $_SESSION["cart"] = []; // Clear session cart
+
+    header("Location: main.html"); // Redirect to main page
+    exit();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -153,20 +215,25 @@ $user = $result->fetch_assoc();
                     <p>Price: R<?php echo htmlspecialchars($item["price"]); ?></p>
                     
                     <form method="post" action="shoppingcart.php">
-                    <input type="hidden" name="index" value="<?php echo $index; ?>">
-                    <button type="submit" name="remove_item">Remove</button>
-                </form>
+    <input type="hidden" name="id" value="<?php echo $item['id']; ?>">
+    <button type="submit" name="remove_item">Remove</button>
+</form>
+
+
             </div>
         <?php endforeach; ?>
     </div>
 <?php endif; ?>
 
-<script>
-// Prevent form resubmission on refresh
-if (window.history.replaceState) {
-    window.history.replaceState(null, null, window.location.href);
-}
-</script>
+           <!-- Display Total Price -->
+<p>Total: <span id="cart-total">R<?php echo $totalPrice; ?></span></p>
+
+<!-- Checkout Button -->
+<form method="post" action="shoppingcart.php">
+    <button type="submit" name="checkout">Pay Now</button>
+</form>
+
+
 
 <!-- Footer -->
 <footer class="site-footer">
