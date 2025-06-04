@@ -87,28 +87,26 @@ $result = $conn->query($sql);
     <h2 class="woman-heading">Woman's Collection</h2>
 
     <div class="product-grid">
-    <?php
-    $counter = 0;
-
-    while ($row = $result->fetch_assoc()) {
-    if ($counter % 4 == 0) { echo "<div class='product-row'>"; }
-
-    echo "<div class='product'>";
-    echo "<a href='woman_description.php?id=" . $row['id'] . "' class='image-link'>";
-    echo "<img src='http://localhost/ZestyWearSA/" . htmlspecialchars($row['image_path']) . "' alt='" . htmlspecialchars($row['name']) . "'>";
-    echo "</a>";
-    echo "<div class='product-details'>";
-    echo "<p class='description'>" . htmlspecialchars($row['name']) . "</p>";
-    echo "<p class='price'>R" . htmlspecialchars($row['price']) . "</p>";
-    echo "</div></div>";
-
-    $counter++;
-    if ($counter % 4 == 0) { echo "</div>"; }
-}
-if ($counter % 4 != 0) { echo "</div>"; }
-
+    <?php 
+    $counter = 0; // Track how many items per row  
+    while ($row = $result->fetch_assoc()) { 
+        if ($counter % 4 == 0) { echo "<div class='product-row'>"; } // Start a new row every 4 items
+    ?>
+        <div class="product-card">
+            <a href="woman_description.php?id=<?php echo $row['id']; ?>" class="image-link">
+                <img src="http://localhost/ZestyWearSA/<?php echo htmlspecialchars($row['image_path']); ?>" class="product-image">
+            </a>
+            <h3 class="product-name"><?php echo htmlspecialchars($row['name']); ?></h3>
+            <p class="product-price">R<?php echo htmlspecialchars($row['price']); ?></p>
+        </div>
+    <?php 
+        $counter++;
+        if ($counter % 4 == 0) { echo "</div>"; } // Close the row after every 4 items
+    } 
+    if ($counter % 4 != 0) { echo "</div>"; } // Ensure closing the last row properly
     ?>
 </div>
+
     <!--Footer of my website begins-->
     <footer class = "site-footer">
       <hr class = "footer-divider">

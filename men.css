@@ -4,6 +4,9 @@
     font-size: 20px !important;
     padding: 20px !important;
     letter-spacing: 2px !important;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .nav-item:hover {
@@ -53,7 +56,7 @@ body {
 }
 
 .footer-text {
-    margin-top: 10;
+    margin-top: 10px;
 }
 
 .auth-links {
@@ -74,7 +77,7 @@ body {
 }
 
 .men-heading {
-    text-align:center;
+    text-align: center;
     font-size: 36px;
     font-weight: bold;
     margin-bottom: 20px;
@@ -82,52 +85,72 @@ body {
     margin-top: 30px;
 }
 
+
 .product-grid {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    gap: 20px;
 }
 
 .product-row {
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-bottom: 20px; /* Adds spacing between rows */
+    margin-bottom: 20px;
 }
 
-.product {
-    width: 22%; /* Ensures 4 items fit per row */
-    margin: 1%;
-    box-sizing: border-box;
+.product-card {
+    width: 22%;
+    height: 320px;
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 15px; /* Adds space around each card */
+    text-align: center;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease-in-out;
 }
 
-img {
-    animation: none !important;
-    transition: none !important;
+
+.product-card:hover {
+    transform: scale(1.05);
 }
 
+/* Clickable image */
+.product-card a {
+    display: block;
+    text-decoration: none;
+}
 
-.product img {
+.product-card img {
     width: 100%;
-    max-width: 250px; /* Ensures consistent image width */
-    height: auto;
+    height: 180px;
+    object-fit: cover;
     border-radius: 8px;
-    display: block; /* Prevents hidden images */
-    object-fit: cover; /* Ensures images maintain proportions */
 }
 
+.product-info {
+    margin-top: 20px;
+}
 
-.product-details {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
+.product-name { 
+    font-size: 18px;
     font-weight: bold;
-    margin-top: 10px;
+    color: #333;
+    margin-top: 20px;
 }
 
-.image-link {
+.product-price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #000000;
+    margin-top: 20px;
+}
+
+
+.image-link { 
     transition: transform 0.3s ease-in-out;
 }
 

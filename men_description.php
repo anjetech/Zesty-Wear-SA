@@ -54,7 +54,7 @@ $sizes = explode(",", $product['size']); // Splits sizes stored as "M,L,S,S" int
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
               <li class="nav-item">
-                <a href = "chart.html" class = "nav-link"><small> Chart</small></a>
+                <a href = "shoppingcart.php" class = "nav-link"><small>Shooping Cart</small></a>
               </li>
 
               <li class="nav-item">
@@ -108,21 +108,29 @@ $sizes = explode(",", $product['size']); // Splits sizes stored as "M,L,S,S" int
             <p><?php echo htmlspecialchars($product['description']); ?></p>
             <p class="price">R<?php echo htmlspecialchars($product['price']); ?></p>
 
-            <!-- Dynamically Display Sizes -->
+            <!-- Dynamically Display Sizes as Plain Text -->
             <div class="size-selection">
-                <?php foreach ($sizes as $size): ?>
-                    <label>
-                        <input type="radio" name="size" value="<?php echo htmlspecialchars(trim($size)); ?>">
-                        <?php echo htmlspecialchars(trim($size)); ?>
-                    </label>
-                <?php endforeach; ?>
+            <p><strong>Available Sizes:</strong> 
+             <?php echo implode(", ", array_map('htmlspecialchars', array_map('trim', $sizes))); ?>
+              </p>
             </div>
 
-            <button class="add-to-cart">Add to Cart</button>
-        </div>
-    </div>
-                </div>
-                </div>
+
+       <form method="post" action="shoppingcart.php">
+    <input type="hidden" name="id" value="<?php echo $product['id']; ?>">
+    <input type="hidden" name="name" value="<?php echo htmlspecialchars($product['name']); ?>">
+    <input type="hidden" name="description" value="<?php echo htmlspecialchars($product['description']); ?>"> 
+    <input type="hidden" name="price" value="<?php echo htmlspecialchars($product['price']); ?>">
+    <input type="hidden" name="image" value="<?php echo htmlspecialchars($product['image_path']); ?>">
+    <input type="hidden" name="size" value="<?php echo htmlspecialchars(trim($sizes[0])); ?>"> <!-- Store first available size -->
+
+    <button type="submit" name="add-to-cart">Add to Cart</button>
+</form>
+
+</div>
+</div>
+</div>
+</div>
 
     <!--Footer of my website begins-->
      <footer class = "site-footer">
@@ -132,14 +140,14 @@ $sizes = explode(",", $product['size']); // Splits sizes stored as "M,L,S,S" int
       </footer>
       <!--Footer ends-->
       
-      <!--Profile alert-->
+      <!--Profile and the shopping cart alert-->
     <script>
     document.addEventListener("DOMContentLoaded", function() {
     fetch('check_session.php')
         .then(response => response.json())
         .then(data => {
             if (data.showAlert) {
-                alert("You need to log in to access your profile!");
+                alert("You need to log in to access this!");
             }
         });
     });

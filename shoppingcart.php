@@ -1,35 +1,54 @@
 <?php
 session_start();
 
-// Database Connection
+// Database connection
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "zestywearsa";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
 if ($conn->connect_error) {
-    die("<script>alert('Connection failed: " . $conn->connect_error . "');</script>");
+    die("Connection failed: " . $conn->connect_error);
 }
 
-// Handle logout action
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['logout'])) {
-    $_SESSION = [];
-    session_destroy();
-
-    echo "<script>
-            alert('You have been logged out successfully.');
-            window.location.href='main.html';
-          </script>";
-    exit();
-}
-
-// If user is NOT logged in, set session flag instead of redirecting immediately
+// If user is NOT logged in, redirect to main page
 if (!isset($_SESSION['user_id'])) {
     $_SESSION['login_alert'] = true;
     header("Location: main.html");
+    exit();
+}
+
+// Handle "Add to Cart" functionality
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["add-to-cart"])) {
+    $product = [
+        "id" => $_POST["id"],
+        "name" => $_POST["name"],
+        "description" => $_POST["description"],
+        "price" => $_POST["price"],
+        "image" => $_POST["image"],
+        "size" => $_POST["size"]
+    ];
+    
+    if (!isset($_SESSION["cart"])) {
+        $_SESSION["cart"] = [];
+    }
+
+    $_SESSION["cart"][] = $product;
+
+    header("Location: shoppingcart.php");
+    exit();
+}
+
+// Handle "Remove from Cart" functionality
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["remove_item"])) {
+    $index = $_POST["index"];
+    unset($_SESSION["cart"][$index]);
+
+    // Re-index the array to prevent gaps in indexes
+    $_SESSION["cart"] = array_values($_SESSION["cart"]);
+
+    header("Location: shoppingcart.php");
     exit();
 }
 
@@ -41,13 +60,6 @@ $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
 $user = $result->fetch_assoc();
-
-// Fetch user's product listings
-$product_sql = "SELECT id, name, description, size, price, image_path, category FROM product WHERE user_id = ?";
-$product_stmt = $conn->prepare($product_sql);
-$product_stmt->bind_param("i", $user_id);
-$product_stmt->execute();
-$product_result = $product_stmt->get_result();
 ?>
 
 <!DOCTYPE html>
@@ -123,16 +135,38 @@ $product_result = $product_stmt->get_result();
       </nav>
 <!-- Navbar ends-->
 
-<!-- Profile Section -->
-<div class="container mt-4">
-    <h1><b>Welcome to the Shopping Cart, <?php echo htmlspecialchars($user['name']); ?></b></h1>
-
+<!-- Shopping cart Section -->
+ <div class="container mt-4">
+ <h1><b>Welcome to the Shopping Cart, <?php echo htmlspecialchars($user['name']); ?></b></h1>
     <h2>Your Products:</h2>
+    <hr class="product-divider">
 
-    <form method="post">
-        <button type="submit" name="payment" class="pay-btn">Proceed To Payment.</button>
-    </form>
-</div>
+    <?php if (!isset($_SESSION["cart"]) || count($_SESSION["cart"]) === 0): ?>
+        <p>Your shopping cart is empty.</p>
+    <?php else: ?>
+        <div class="cart-items">
+            <?php foreach ($_SESSION["cart"] as $index => $item): ?>
+                <div class="cart-card">
+                    <img src="http://localhost/ZestyWearSA/<?php echo htmlspecialchars($item["image"]); ?>" class="cart-image">
+                    <h3><?php echo htmlspecialchars($item["name"]); ?></h3>
+                    <p>Size: <?php echo htmlspecialchars($item["size"]); ?></p>
+                    <p>Price: R<?php echo htmlspecialchars($item["price"]); ?></p>
+                    
+                    <form method="post" action="shoppingcart.php">
+                    <input type="hidden" name="index" value="<?php echo $index; ?>">
+                    <button type="submit" name="remove_item">Remove</button>
+                </form>
+            </div>
+        <?php endforeach; ?>
+    </div>
+<?php endif; ?>
+
+<script>
+// Prevent form resubmission on refresh
+if (window.history.replaceState) {
+    window.history.replaceState(null, null, window.location.href);
+}
+</script>
 
 <!-- Footer -->
 <footer class="site-footer">
@@ -141,14 +175,14 @@ $product_result = $product_stmt->get_result();
     <p class="footer-text">Created by: Anje Nieuwenhuis</p>
 </footer>
 
-<!-- Profile alert -->
+<!-- Shopping cart alert -->
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         fetch('check_session.php')
             .then(response => response.json())
             .then(data => {
                 if (data.showAlert) {
-                    alert("You need to log in to access your profile!");
+                    alert("You need to log in to access your shopping cart!");
                 }
             });
     });

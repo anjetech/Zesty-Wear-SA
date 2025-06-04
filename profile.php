@@ -130,20 +130,19 @@ $product_result = $product_stmt->get_result();
 
     <h2>Your Listings:</h2>
 
-    <?php if ($product_result->num_rows > 0): ?>
-        <div class="row">
-            <?php while ($product = $product_result->fetch_assoc()): ?>
-                <div class="col-md-3">
-                    <div class="card mb-3">
-                        <img src="<?php echo htmlspecialchars($product['image_path']); ?>" class="card-img-top" alt="Product Image">
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo htmlspecialchars($product['name']); ?></h5>
-                            <p class="card-text"><?php echo htmlspecialchars($product['description']); ?></p>
-                            <p class="card-text"><strong>Size:</strong> <?php echo htmlspecialchars($product['size']); ?></p>
-                            <p class="card-text"><strong>Price:</strong> R<?php echo htmlspecialchars($product['price']); ?></p>
-                            <p class="card-text"><strong>Category:</strong> <?php echo htmlspecialchars($product['category']); ?></p>
 
-                            <?php
+    <?php if ($product_result->num_rows > 0): ?>
+    <div class="cart-items"> <!-- Apply the same styling as the shopping cart -->
+        <?php while ($product = $product_result->fetch_assoc()): ?>
+            <div class="cart-card">
+                <img src="<?php echo htmlspecialchars($product['image_path']); ?>" class="cart-image" alt="Product Image">
+                <h3><?php echo htmlspecialchars($product['name']); ?></h3>
+                <p><?php echo htmlspecialchars($product['description']); ?></p>
+                <p><strong>Size:</strong> <?php echo htmlspecialchars($product['size']); ?></p>
+                <p><strong>Price:</strong> R<?php echo htmlspecialchars($product['price']); ?></p>
+                <p><strong>Category:</strong> <?php echo htmlspecialchars($product['category']); ?></p>
+
+                <?php
                                 $category = strtolower(trim($product['category']));
                                 $categoryPage = "main.html"; // fallback
 
@@ -163,15 +162,13 @@ $product_result = $product_stmt->get_result();
                                 }
                             ?>
 
-                            <a href="<?php echo $categoryPage; ?>" class="btn btn-primary mt-2">View Product</a>
-                        </div>
-                    </div>
-                </div>
-            <?php endwhile; ?>
-        </div>
-    <?php else: ?>
-        <p>You have no listings yet.</p>
-    <?php endif; ?>
+                <a href="<?php echo $categoryPage; ?>" class="btn btn-primary">View Product</a>
+            </div>
+        <?php endwhile; ?>
+    </div>
+<?php else: ?>
+    <p>You have no listings yet.</p>
+<?php endif; ?>
 
     <form method="post">
         <button type="submit" name="logout" class="logout-btn">Logout</button>
