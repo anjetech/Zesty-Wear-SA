@@ -131,7 +131,7 @@ body {
     margin-top: 20px;
 }
 
-.product-name {
+.product-name { 
     font-size: 18px;
     font-weight: bold;
     color: #333;
@@ -144,6 +144,7 @@ body {
     color: #000000;
     margin-top: 20px;
 }
+
 
 .image-link {
     transition: transform 0.3s ease-in-out;

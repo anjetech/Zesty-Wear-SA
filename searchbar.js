@@ -5,9 +5,10 @@ document.getElementById("searchForm").addEventListener("submit", function(event)
 
     let pages = {
         "home": "main.html",
-        "men": "men.html",
-        "woman": "woman.html",
-        "accessories": "accessories.html",
+        "men": "men.php",
+        "woman": "woman.php",
+        "men accessories": "men_accessories.php",
+        "woman accessories": "woman_accessories.php",
         "men jeans": "men-image1-description.html",
         "men's jeans": "men-image1-description.html",
         "winter jacket": "description2-men.html",
@@ -37,7 +38,13 @@ document.getElementById("searchForm").addEventListener("submit", function(event)
         "earrings": "accessories1-woman.html",
         "handbag": "accessories2-woman.html",
         "make up bag": "accessories3-woman.html",
-        "necklace": "accessories4-woman.html"
+        "necklace": "accessories4-woman.html",
+        "profile": "profile.php",
+        "login": "login.html",
+        "register": "signup.html",
+        "sell now": "sellnow.html",
+        "shopping cart": "shoppingcart.php",
+        
     };
 
     if (pages[query]) {
