@@ -26,7 +26,7 @@ $result = $conn->query($sql);
 </head>
 <body>
 
-<!-- Navbar begins-->
+<!-- Navbar begins-->  
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
           
@@ -42,7 +42,7 @@ $result = $conn->query($sql);
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
               <li class="nav-item">
-                <a href = "chart.html" class = "nav-link"><small> Chart</small></a>
+                <a href = "shoppingcart.php" class = "nav-link"><small>Shopping Cart</small></a>
               </li>
 
               <li class="nav-item">
@@ -117,13 +117,14 @@ $result = $conn->query($sql);
 </footer>
 
 
-<script>
+<!--Profile and the shopping cart alert-->
+    <script>
     document.addEventListener("DOMContentLoaded", function() {
     fetch('check_session.php')
         .then(response => response.json())
         .then(data => {
             if (data.showAlert) {
-                alert("You need to log in to access your profile!");
+                alert("You need to log in to access this!");
             }
         });
     });

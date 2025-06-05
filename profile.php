@@ -65,7 +65,7 @@ $product_result = $product_stmt->get_result();
 </head>
 <body>
 
-<!-- Navbar begins-->
+<!-- Navbar begins-->  
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
           
@@ -81,7 +81,7 @@ $product_result = $product_stmt->get_result();
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
               <li class="nav-item">
-                <a href = "chart.html" class = "nav-link"><small> Chart</small></a>
+                <a href = "shoppingcart.php" class = "nav-link"><small>Shopping Cart</small></a>
               </li>
 
               <li class="nav-item">
@@ -182,16 +182,16 @@ $product_result = $product_stmt->get_result();
     <p class="footer-text">Created by: Anje Nieuwenhuis</p>
 </footer>
 
-<!-- Profile alert -->
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        fetch('check_session.php')
-            .then(response => response.json())
-            .then(data => {
-                if (data.showAlert) {
-                    alert("You need to log in to access your profile!");
-                }
-            });
+<!--Profile and the shopping cart alert-->
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+    fetch('check_session.php')
+        .then(response => response.json())
+        .then(data => {
+            if (data.showAlert) {
+                alert("You need to log in to access this!");
+            }
+        });
     });
 </script>
 

@@ -38,7 +38,7 @@ $sizes = explode(",", $product['size']); // Splits sizes stored as "M,L,S,S" int
 </head>
 <body>
 
-<!-- Navbar begins-->
+<!-- Navbar begins-->  
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
           
@@ -54,7 +54,7 @@ $sizes = explode(",", $product['size']); // Splits sizes stored as "M,L,S,S" int
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
               <li class="nav-item">
-                <a href = "shoppingcart.php" class = "nav-link"><small>Shooping Cart</small></a>
+                <a href = "shoppingcart.php" class = "nav-link"><small>Shopping Cart</small></a>
               </li>
 
               <li class="nav-item">
