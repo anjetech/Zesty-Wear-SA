@@ -30,24 +30,34 @@ $user = $result_user->fetch_assoc(); // Store user data
 
 // Fetch user's cart items from the database
 $cartItems = [];
-$sql = "SELECT user_cart.quantity, user_cart.product_id, product.name, product.price, product.image_path 
+$_SESSION["cart"] = []; // Clear session cart before repopulating
+
+$sql = "SELECT user_cart.quantity, user_cart.product_id AS id, product.name, product.price, product.image_path, product.size 
         FROM user_cart 
         JOIN product ON user_cart.product_id = product.id 
         WHERE user_cart.user_id = ?";
-
-
-
-
 
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
 
-
 while ($row = $result->fetch_assoc()) {
+    // Fallback for image path
+    if (!isset($row["image_path"]) || empty($row["image_path"])) { 
+        $row["image_path"] = "default-image.jpg"; // Provide a default image if missing
+    }
+
+    // Fallback for size
+    if (!isset($row["id"])) { 
+        continue; // Skip products that have no ID (shouldn't happen, but just in case)
+    }
+
+    $_SESSION["cart"][] = $row;
     $cartItems[] = $row;
 }
+
+
 
 // Function to calculate total price
 function calculateTotal($cartItems) {
@@ -63,30 +73,30 @@ $totalPrice = calculateTotal($cartItems);
 // Handle "Add to Cart" functionality
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["add-to-cart"])) {
     $product_id = $_POST["id"];
-    $name = $_POST["name"];
-    $price = $_POST["price"];
-    $size = $_POST["size"];
-    $image = $_POST["image"];
+    $quantity = isset($_POST["quantity"]) ? $_POST["quantity"] : 1; // Default quantity to 1
+    $user_id = $_SESSION["user_id"];
 
-    // Store in session
-    if (!isset($_SESSION["cart"])) {
-        $_SESSION["cart"] = [];
+    // Check if product already exists in the user's cart
+    $sql_check = "SELECT quantity FROM user_cart WHERE user_id = ? AND product_id = ?";
+    $stmt_check = $conn->prepare($sql_check);
+    $stmt_check->bind_param("ii", $user_id, $product_id);
+    $stmt_check->execute();
+    $result = $stmt_check->get_result();
+
+    if ($row = $result->fetch_assoc()) {
+        // Product exists -> Update quantity instead of inserting a new row
+        $new_quantity = $row["quantity"] + $quantity;
+        $sql_update = "UPDATE user_cart SET quantity = ? WHERE user_id = ? AND product_id = ?";
+        $stmt_update = $conn->prepare($sql_update);
+        $stmt_update->bind_param("iii", $new_quantity, $user_id, $product_id);
+        $stmt_update->execute();
+    } else {
+        // Product does not exist -> Insert new entry
+        $sql_insert = "INSERT INTO user_cart (user_id, product_id, quantity) VALUES (?, ?, ?)";
+        $stmt_insert = $conn->prepare($sql_insert);
+        $stmt_insert->bind_param("iii", $user_id, $product_id, $quantity);
+        $stmt_insert->execute();
     }
-  $_SESSION["cart"][] = [
-    "id" => $product_id, // Use `product_id` instead of `id`
-    "name" => $name,
-    "price" => $price,
-    "size" => $size,
-    "image" => $image
-];
-
-
-    // Store in database (persistent cart)
-    $sql = "INSERT INTO user_cart (user_id, product_id, quantity) VALUES (?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("iii", $user_id, $product_id, $quantity);
-    $stmt->execute();
-
 
     header("Location: shoppingcart.php");
     exit();
@@ -94,19 +104,31 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["add-to-cart"])) {
 
 // Handle "Remove from Cart" functionality
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["remove_item"])) {
-    $product_id = $_POST["product_id"];
-    $user_id = $_SESSION["user_id"];
+    if (isset($_POST["product_id"])) {
+        $product_id = $_POST["product_id"];
+        $user_id = $_SESSION["user_id"];
 
-    // Remove product from the database
-    $sql = "DELETE FROM user_cart WHERE user_id = ? AND product_id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ii", $user_id, $product_id);
-    $stmt->execute();
+        // Remove product from the database
+        $sql = "DELETE FROM user_cart WHERE user_id = ? AND product_id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ii", $user_id, $product_id);
+        $stmt->execute();
 
-    // Refresh the page to update the cart display
-    header("Location: shoppingcart.php");
-    exit();
+        // Remove from session cart
+        foreach ($_SESSION["cart"] as $index => $item) {
+            if ($item["id"] == $product_id) {
+                unset($_SESSION["cart"][$index]);
+                break;
+            }
+        }
+        $_SESSION["cart"] = array_values($_SESSION["cart"]); // Reindex array
+
+        header("Location: shoppingcart.php");
+        exit();
+    }
 }
+
+
 
 
 // Handle Checkout: Clear Cart & Redirect
@@ -209,16 +231,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["checkout"])) {
         <div class="cart-items">
             <?php foreach ($_SESSION["cart"] as $index => $item): ?>
                 <div class="cart-card">
-                    <img src="http://localhost/ZestyWearSA/<?php echo htmlspecialchars($item["image"]); ?>" class="cart-image">
+                    <img src="http://localhost/ZestyWearSA/<?php echo htmlspecialchars($item['image_path'] ?? 'default-image.jpg'); ?>" class="cart-image">
                     <h3><?php echo htmlspecialchars($item["name"]); ?></h3>
                     <p>Size: <?php echo htmlspecialchars($item["size"]); ?></p>
                     <p>Price: R<?php echo htmlspecialchars($item["price"]); ?></p>
                     
                     <form method="post" action="shoppingcart.php">
-    <input type="hidden" name="id" value="<?php echo $item['id']; ?>">
+    <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($item['id'] ?? ''); ?>">
     <button type="submit" name="remove_item">Remove</button>
 </form>
-
 
             </div>
         <?php endforeach; ?>
@@ -254,6 +275,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["checkout"])) {
             });
     });
 </script>
+
+<!-- Lets do the calculation-->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const cartTotalElement = document.getElementById("cart-total");
+
+    function updateTotalPrice() {
+        let total = 0;
+        document.querySelectorAll(".cart-card").forEach(card => {
+            const priceText = card.querySelector("p:nth-child(4)").textContent.replace("Price: R", "").trim();
+            total += parseFloat(priceText);
+        });
+        cartTotalElement.textContent = "R" + total.toFixed(2);
+    }
+});
+</script>
+
 
 <script src="searchbar.js"></script>
 </body>
