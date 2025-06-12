@@ -34,9 +34,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Simple password comparison (not hashed)
         if ($password === $stored_password) {
-            $_SESSION['user_id'] = $id;
-            $_SESSION['email'] = $email;
-            header("Location: main.html");
+        $_SESSION['user_id'] = $id;
+        $_SESSION['email'] = $email;
+        // Redirect back to login page with success parameter
+        header("Location: login.html?success=1");
             exit();
         } else {
             // Redirect with error message

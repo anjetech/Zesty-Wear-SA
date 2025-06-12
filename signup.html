@@ -124,5 +124,16 @@ window.onload = function () {
     });
 </script>
 
+<!-- Alert for the registration.-->
+<script>
+window.onload = function () {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('success') === '1') {
+        alert('Registration successful!');
+        window.location.href = 'main.html'; // redirect after alert
+    }
+};
+</script>
+
 </body>
 </html>

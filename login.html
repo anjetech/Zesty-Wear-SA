@@ -122,5 +122,17 @@ window.onload = function () {
     });
 </script>
 
+<!-- Login alert for the login button-->
+<script>
+    // Show success alert and redirect if login was successful
+    const successParam = new URLSearchParams(window.location.search).get('success');
+    if (successParam === '1') {
+        alert('Successfully logged in!');
+        window.location.href = 'main.html';
+    }
+</script>
+
+
+
 </body>
 </html>

@@ -246,13 +246,39 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["checkout"])) {
     </div>
 <?php endif; ?>
 
-           <!-- Display Total Price -->
-<p>Total: <span id="cart-total">R<?php echo $totalPrice; ?></span></p>
+           <!-- Display Total Price with shipping fee. -->
+        <?php
+        $shippingFee = 0;
+        if ($totalPrice < 500) {
+        $shippingFee = 50;
+        }
+        $finalTotal = $totalPrice + $shippingFee;
+        ?>
 
-<!-- Checkout Button -->
-<form method="post" action="shoppingcart.php">
-    <button type="submit" name="checkout">Pay Now</button>
+        <div class="cart-summary">
+        <p>Subtotal: <span>R<?php echo number_format($totalPrice, 2); ?></span></p>
+        <p>Shipping: <span>R<?php echo number_format($shippingFee, 2); ?></span></p>
+        <p><strong>Total: <span id="cart-total">R<?php echo number_format($finalTotal, 2); ?></span></strong></p>
+        </div>
+
+<!-- Pay Now button with an alert-->
+<form id="checkoutForm" method="post" action="shoppingcart.php">
+    <input type="hidden" name="checkout" value="1">
+    <button type="submit" class = "pay-btn">Pay Now</button>
 </form>
+
+<script>
+document.getElementById("checkoutForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent form submission temporarily
+
+    alert("Payment successful! Thank you for Shopping with Zesty Wear SA.");
+    
+    setTimeout(() => {
+        this.submit(); // Submit the form after alert
+    }, 100); // Slight delay to ensure alert shows
+});
+</script>
+
 
 
 

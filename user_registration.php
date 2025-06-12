@@ -75,10 +75,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("sss", $name, $email, $password);
 
     if ($stmt->execute()) {
-        $_SESSION['user_id'] = $stmt->insert_id;
-        $_SESSION['email'] = $email;
+    $_SESSION['user_id'] = $stmt->insert_id;
+    $_SESSION['email'] = $email;
 
-        header("Location: profile.php");
+    // Redirect to signup.html with success flag
+    header("Location: signup.html?success=1");
         exit();
     } else {
         header("Location: signup.html?error_name=" . urlencode("Database error: " . $stmt->error));
