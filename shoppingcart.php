@@ -130,7 +130,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["remove_item"])) {
 
 
 
-
 // Handle Checkout: Clear Cart & Redirect
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["checkout"])) {
     $sql = "DELETE FROM user_cart WHERE user_id = ?";
