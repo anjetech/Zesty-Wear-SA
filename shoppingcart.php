@@ -25,12 +25,12 @@ $stmt_user = $conn->prepare($sql_user);
 $stmt_user->bind_param("i", $user_id);
 $stmt_user->execute();
 $result_user = $stmt_user->get_result();
-$user = $result_user->fetch_assoc(); // Store user data
+$user = $result_user->fetch_assoc(); 
 
 
 // Fetch user's cart items from the database
 $cartItems = [];
-$_SESSION["cart"] = []; // Clear session cart before repopulating
+$_SESSION["cart"] = []; 
 
 $sql = "SELECT user_cart.quantity, user_cart.product_id AS id, product.name, product.price, product.image_path, product.size 
         FROM user_cart 
