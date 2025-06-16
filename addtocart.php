@@ -58,7 +58,9 @@ if (isset($_GET['id']) && isset($_SESSION['user_id'])) {
         echo "Product not found.";
     }
 } else {
-    // Required data (product ID or user login) missing
-    echo "Missing product ID or user is not logged in.";
+    echo "<script>alert('You need to login first before you can add products to the shopping cart.'); window.location.href='login.html';</script>";
+
+    /* Required data (product ID or user login) missing
+    echo "Missing product ID or user is not logged in.";*/
 }
 ?>
