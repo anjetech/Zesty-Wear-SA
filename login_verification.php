@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         }
     } else {
-        // Redirect with error message
+        // Redirect with an error message
         header("Location: login.html?error=" . urlencode("No account found with this email."));
         exit();
     }

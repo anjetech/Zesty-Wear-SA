@@ -1,4 +1,3 @@
-/* Navbar Styles */
 .navbar {
     background-color: black !important;
     height: 70px !important;
@@ -34,19 +33,16 @@ a:hover .header-name {
     color: #d2c0c0;
 }
 
-/* Page Background */
 body {
     background-color: rgb(255, 255, 255) !important;
 }
 
-/* Centering Product Description */
 .product-container {
     display: flex;
     width: 100%;
     height: 100vh;
 }
 
-/* Left Image */
 .left-image {
     flex: 1;
     display: flex;
@@ -63,7 +59,6 @@ body {
     margin-left: -30px;
 }
 
-/* Right Side - Product Info */
 .right-form {
     flex: 0.8; 
     display: flex;
@@ -72,7 +67,6 @@ body {
     padding: 40px; 
 }
 
-/* Product Info */
 .product-info {
     max-width: 400px;
     font-size: 18px;
@@ -84,16 +78,14 @@ body {
     margin-top: 10px;
 }
 
-/* Price Styling */
 .price {
     font-size: 24px;
     font-weight: bold;
     color: #333;
 }
 
-/* Add to Cart Button */
 .add-to-cart {
-    padding: 12px 50px; /* Increase width */
+    padding: 12px 50px; 
     background-color: black;
     color: white;
     border: none;
@@ -101,7 +93,7 @@ body {
     font-size: 16px;
     transition: 0.3s;
     margin-top: 10px;
-    display: inline-block; /* Ensures proper spacing */
+    display: inline-block;
     text-align: center;
 }
 
@@ -109,7 +101,6 @@ body {
     background-color: grey;
 }
 
-/* Footer */
 .site-footer {
     background-color: light gray;
     padding: 20px 0;
@@ -129,7 +120,6 @@ body {
     margin-top: 10;
 }
 
-/* Authentication Links */
 .auth-links {
     display: flex;
     gap: 15px;
@@ -147,7 +137,6 @@ body {
     text-decoration: underline;
 }
 
-/* Size Selection - Make More Structured */
 .size-selection {
     display: flex;
     gap: 10px;

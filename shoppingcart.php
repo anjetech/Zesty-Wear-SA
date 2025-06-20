@@ -50,7 +50,7 @@ while ($row = $result->fetch_assoc()) {
 
     // Fallback for size
     if (!isset($row["id"])) { 
-        continue; // Skip products that have no ID (shouldn't happen, but just in case)
+        continue; // Skip products that have no ID 
     }
 
     $_SESSION["cart"][] = $row;
@@ -73,7 +73,7 @@ $totalPrice = calculateTotal($cartItems);
 // Handle "Add to Cart" functionality
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["add-to-cart"])) {
     $product_id = $_POST["id"];
-    $quantity = isset($_POST["quantity"]) ? $_POST["quantity"] : 1; // Default quantity to 1
+    $quantity = isset($_POST["quantity"]) ? $_POST["quantity"] : 1;
     $user_id = $_SESSION["user_id"];
 
     // Check if product already exists in the user's cart
@@ -121,7 +121,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["remove_item"])) {
                 break;
             }
         }
-        $_SESSION["cart"] = array_values($_SESSION["cart"]); // Reindex array
+        $_SESSION["cart"] = array_values($_SESSION["cart"]);
 
         header("Location: shoppingcart.php");
         exit();
@@ -268,13 +268,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["checkout"])) {
 
 <script>
 document.getElementById("checkoutForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent form submission temporarily
+    event.preventDefault(); 
 
     alert("Payment successful! Thank you for Shopping with Zesty Wear SA.");
     
     setTimeout(() => {
-        this.submit(); // Submit the form after alert
-    }, 100); // Slight delay to ensure alert shows
+        this.submit(); 
+    }, 100); 
 });
 </script>
 

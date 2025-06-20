@@ -1,4 +1,3 @@
-/* General Styles */
 html, body {
     height: 100%;
     margin: 0;
@@ -8,7 +7,6 @@ html, body {
     background-color: #ffffff !important;
 }
 
-/* Navbar */
 .navbar {
     background-color: black !important;
     height: 70px !important;
@@ -44,7 +42,6 @@ a:hover .header-name {
     color: #d2c0c0;
 }
 
-/* Carousel and Images */
 .carousel img,
 img {
     width: 100%;
@@ -52,7 +49,6 @@ img {
     object-fit: cover;
 }
 
-/* Promotional Section */
 .promo-container {
     display: flex;
     flex-direction: column;
@@ -87,7 +83,6 @@ img {
     background-color: grey;
 }
 
-/* Headings */
 .mens-heading,
 .woman-heading {
     text-align: center;
@@ -97,7 +92,6 @@ img {
     color: grey;
 }
 
-/* Product Grid */
 .product-grid {
     display: flex;
     flex-wrap: wrap;
@@ -129,7 +123,6 @@ img {
     margin-top: 10px;
 }
 
-/* Footer */
 .site-footer {
     background-color: rgb(255, 255, 255);
     padding: 20px 0;
@@ -149,7 +142,6 @@ img {
     margin-top: 10px;
 }
 
-/* Auth Links */
 .auth-links {
     display: flex;
     gap: 15px;
@@ -171,7 +163,6 @@ img {
     text-decoration: underline;
 }
 
-/* Image Hover Zoom */
 .image-link {
     transition: transform 0.3s ease-in-out;
 }
@@ -181,7 +172,6 @@ img {
     cursor: pointer;
 }
 
-/* Responsive Design */
 @media (max-width: 1024px) {
     .promo-text {
         font-size: 28px;

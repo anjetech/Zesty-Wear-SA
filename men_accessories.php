@@ -9,7 +9,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Fetch products from the database (Make sure "Men Accessories" matches database entries)
+// Fetch products from the database 
 $sql = "SELECT id, name, description, price, image_path FROM product WHERE category='Men Accessories'";
 $result = $conn->query($sql);
 ?>

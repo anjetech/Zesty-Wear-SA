@@ -77,14 +77,14 @@ a:hover .header-name {
 }
 
 .pay-btn {
-    padding: 10px 35px; /* Slightly bigger as requested */
+    padding: 10px 35px; 
     background-color: black;
     color: white;
     border: none;
     cursor: pointer;
     font-size: 18px;
     transition: 0.3s;
-    border-radius: 5px; /* Changed from 50px to 5px for normal rounded corners */
+    border-radius: 5px; 
 }
 
 .pay-btn:hover {
@@ -101,8 +101,8 @@ a:hover .header-name {
 }
 
 .cart-card {
-    width: 250px; /* Adjust width to ensure uniform cards */
-    background-color: #f8f8f8; /* Light background for better visibility */
+    width: 250px;
+    background-color: #f8f8f8; 
     border: 1px solid #ddd;
     border-radius: 10px;
     padding: 15px;
@@ -149,7 +149,7 @@ button[name="remove_item"]:hover {
 }
 
 .cart-summary p {
-    font-size: 18px; /* Adjust as needed */
+    font-size: 18px;
     margin: 8px 0;
     font-weight: bold;
 }

@@ -121,7 +121,7 @@ $sizes = explode(",", $product['size']); // Splits sizes stored as "M,L,S,S" int
     <input type="hidden" name="description" value="<?php echo htmlspecialchars($product['description']); ?>"> 
     <input type="hidden" name="price" value="<?php echo htmlspecialchars($product['price']); ?>">
     <input type="hidden" name="image" value="<?php echo htmlspecialchars($product['image_path']); ?>">
-    <input type="hidden" name="size" value="<?php echo htmlspecialchars(trim($sizes[0])); ?>"> <!-- Store first available size -->
+    <input type="hidden" name="size" value="<?php echo htmlspecialchars(trim($sizes[0])); ?>"> 
 
     <button type="submit" name ="add-to-cart" class = "add-to-cart">Add to Cart</button>
     </form>

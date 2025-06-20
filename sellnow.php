@@ -1,8 +1,8 @@
 <?php
 // Database Connection
 $host = "localhost";
-$user = "root"; // Update if needed
-$pass = ""; // Your DB password
+$user = "root"; 
+$pass = "";
 $dbname = "zestywearsa";
 
 $conn = new mysqli($host, $user, $pass, $dbname);
@@ -26,9 +26,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $size = trim($_POST['size']);
     $price = trim($_POST['price']);
     $category = trim($_POST['category']);
-    $image_filename = basename($_FILES['image_path']['name']); // Get image file name
+    $image_filename = basename($_FILES['image_path']['name']); 
 
-    // Validate Category (Ensures it's correctly formatted)
+    // Validate Category 
     $valid_categories = ["Men", "Woman", "Men Accessories", "Woman Accessories"];
     if (!in_array($category, $valid_categories)) {
         die("Invalid category selected.");

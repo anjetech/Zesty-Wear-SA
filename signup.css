@@ -41,10 +41,10 @@ a {
 
 .container {
     background: url('login4.jpg') no-repeat center center;
-    background-size:cover; /* Ensures the image fully stretches */
-    background-position: center; /* Centers the image perfectly */
-    width: 100vw; /* Full viewport width */
-    height: 100vh; /* Full viewport height */
+    background-size:cover; 
+    background-position: center; 
+    width: 100vw; 
+    height: 100vh; 
     display: flex;
     align-items: center;
     justify-content: center;
